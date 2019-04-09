@@ -1,0 +1,117 @@
+git init
+
+Initializing a repository:
+cd Documents?first_git_project/
+/* inside the root director*/
+
+git init /*do all the storing and tracking*/
+pwd
+ls -la /*hidden dot file*/
+ls -la /*git work space leave it alone single top directory*/
+
+/*create a new file*/
+git add .
+git commit -m "Initial commit"
+
+git log
+git lelp log
+git log -n 1
+git log -n 2
+git log -n0
+
+/* Staging commit*/
+
+git status
+git add second_file.txt
+git status
+
+ls -la
+git status
+
+git init
+git status
+git log
+
+git add .
+cd ../explore_california
+
+git ls-tree
+git ls-tree HEAD
+git ls-tree master
+
+/****/
+git log --oneline
+git show a29fd6c
+git log
+
+git diff --cached
+git log --oneline
+
+ls -la .git/refs/head
+cat .git/refs/heads/master
+git log --oneline
+
+
+git branch new_feature
+git branch  /*still on the master branch*/
+
+ls -la .git/refs/heads
+cat .git/refs/heads/new_feature
+
+cat .git/HEAD
+
+git branch
+
+cat .git/HEAD
+
+git checkout new_feature
+git branch
+cat .git/HEAD
+
+git commit -am "Modified title of html"
+git checkout master
+git branch
+git log --oneline
+
+ls -la ~
+
+__git_ps1
+cd .. 
+__git_ps1
+cd explore_california/
+
+/* Stashing Changes*/
+git stash save "change mission page title"
+git status
+git log --oneline
+git log --oneline -3
+
+
+git stash list
+git chekout master
+git stash show stash@{0}
+git stash show -p stash@{0}
+git stash list
+git stash clear
+
+
+/***Remotes Githun***/
+
+//create new repo
+explore_california //Websit for Explore California
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
