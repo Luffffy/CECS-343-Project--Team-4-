@@ -1,1 +1,21 @@
+public class Major {
+	private String majorName;
+	private String courseName;
 
+	public Major (String majorName, String courseName) {
+		this.majorName = majorName;
+		this.courseName = courseName;
+	}
+	public String get_majorName() {
+		return majorName;
+	}
+	public String get_courseName() {
+		return courseName;
+	}
+	public void set_majorName(String name) {
+		majorName = name;
+	}
+	public void set_courseName(String name) {
+		courseName = name;
+	}
+}
