@@ -1,8 +1,8 @@
-public class Major {
+public class major {
 	private String majorName;
 	private String courseName;
 
-	public Major (String majorName, String courseName) {
+	public major (String majorName, String courseName) {
 		this.majorName = majorName;
 		this.courseName = courseName;
 	}
