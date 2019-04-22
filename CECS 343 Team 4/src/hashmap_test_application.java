@@ -9,5 +9,7 @@
  * @author chealyTahir
  */
 public class hashmap_test_application {
-    
+    public static void main(String[] args) {
+        System.out.println("hashmap_test_application");
+    }
 }
