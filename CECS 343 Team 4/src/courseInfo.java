@@ -10,26 +10,44 @@
  */
 public class courseInfo {
     private String courseName;
+    private int courseID;
+    private int courseUnits;
     private String day;
     private String time;
     private String location;
+    private String building;
+    private String room;
     
+    public courseInfo() {
+        
+    }
+    public courseInfo(String courseName, int courseID) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+    }
     public courseInfo (String courseName, String day, String time, String location){
         this.courseName = courseName;
         this.day = day;
         this.time = time;
         this.location = location;
     }
-    String getCourse(){
+    public void setCourseLocation(String building, String room){
+        this.building = building;
+        this.room = room;
+    }
+    public void setCourseUnits(String courseName) {
+        courseUnits = 3;
+    }
+    public String getCourse(){
         return courseName;
     }
-    String getDay(){
+    public String getDay(){
         return day;
     }
-    String getTime() {
+    public String getTime() {
         return time;
     }
-    String getLocation() {
-        return location;
+    public String getLocation() {
+        return building + room;
     }
 }
