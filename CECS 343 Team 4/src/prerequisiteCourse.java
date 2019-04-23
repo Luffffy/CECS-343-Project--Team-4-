@@ -24,7 +24,8 @@ public class prerequisiteCourse {
     public void print_prereCourses(String majorName) {
       // let us print all the elements available in list
       for (String preCourse: arraylist) {
-         System.out.println(preCourse);
+         System.out.print(preCourse + " ");
       } 
+      System.out.println();
     }
 }

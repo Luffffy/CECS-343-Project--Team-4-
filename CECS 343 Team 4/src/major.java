@@ -55,10 +55,11 @@ public class major {
       // let us print all the elements available in list
         if (this.majorName == majorName) {
           for (String course : course_Arraylist) {
-             System.out.println(course);
+             System.out.print(course + " ");
           } 
         }
         else
             System.out.println("Wrong major name for the major Object");
+        System.out.println();
     }
 }
