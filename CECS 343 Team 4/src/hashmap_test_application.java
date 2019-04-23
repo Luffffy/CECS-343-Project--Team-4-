@@ -51,9 +51,16 @@ public class hashmap_test_application {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Student_UI().setVisible(true);
+                new HashMap_Database_UI().setVisible(true);
             }
         });
+        
+        /* Create and display the form */
+/*        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Student_UI().setVisible(true);
+            }
+        }); */
         
     }
 }

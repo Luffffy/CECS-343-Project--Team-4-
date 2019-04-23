@@ -16,7 +16,7 @@ public class hashmapDatabase {
     Map<Integer, professor> professorHashMap = new HashMap<>();
     Map<String, major>     majorHashMap     = new HashMap<>();
     Map<String, prerequisiteCourse> prereCourseHashMap = new HashMap<>(); 
-    
+       
     public hashmapDatabase() {
         professorHashMap.put(12345, pObject);
         majorHashMap.put("Biology", mObject);
@@ -51,8 +51,7 @@ public class hashmapDatabase {
         for(Map.Entry<String, major> majorObj : entries) {
             System.out.print("'" + majorObj.getKey() + "' major contain courses: ");
             major ob = majorObj.getValue();
-            ob.print_MajorCourses(ob.get_majorName());
-            
+            ob.print_MajorCourses(ob.get_majorName());           
         }    
     }
     void print_prereCourse_Hashmap() {

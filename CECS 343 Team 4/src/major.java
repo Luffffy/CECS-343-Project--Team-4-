@@ -17,6 +17,11 @@ public class major {
     private String majorName;
     private String courseName;
     ArrayList<String> course_Arraylist = new ArrayList();
+    
+    public major() {
+        //this.majorName = null;
+        //this.courseName = null;
+    }
 
     public major(String majorName) {
         this.majorName = majorName;
@@ -38,7 +43,8 @@ public class major {
         courseName = name;
     }
     public void add_MajorCourse(String courseName) {
-        course_Arraylist.add(courseName); 
+        this.courseName = courseName; 
+        course_Arraylist.add(this.courseName); 
     }
     public void remove_MajorCourse(String courseName) {
         int index = 0; 
@@ -53,7 +59,10 @@ public class major {
     }
     public void print_MajorCourses(String majorName) {
       // let us print all the elements available in list
-        if (this.majorName == majorName) {
+      if (course_Arraylist.isEmpty()){
+          System.out.println("No course added to '" + majorName + "' major yet!");
+      }
+      else if (this.majorName == majorName) {
           for (String course : course_Arraylist) {
              System.out.print(course + " ");
           } 
