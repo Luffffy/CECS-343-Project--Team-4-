@@ -9,5 +9,17 @@
  * @author Judy
  */
 public class University {
+    private String universityName;
     
+    public University(String name) {
+        universityName = name;
+    }
+    
+    public String getUniversityName() {
+        return universityName;
+    }
+    
+    public void setUniversityName(String name) {
+        universityName = name;
+    }
 }

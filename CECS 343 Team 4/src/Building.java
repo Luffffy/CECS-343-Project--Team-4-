@@ -9,5 +9,27 @@
  * @author Judy
  */
 public class Building {
+    private String buildingName;
+    private int occupancyLimit;
     
+    public Building(String name, int limit) {
+        occupancyLimit = limit;
+        buildingName = name;
+    }
+    
+    public int getOccupancyLimit() {
+        return occupancyLimit;
+    }
+    
+    public void setOccupancyLimit(int limit) {
+        occupancyLimit = limit;
+    }
+    
+    public String getBuildingName() { 
+        return buildingName;
+    }
+    
+    public void setBuildingName(String name) {
+        buildingName = name;
+    }
 }

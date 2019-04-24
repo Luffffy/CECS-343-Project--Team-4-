@@ -9,5 +9,27 @@
  * @author Judy
  */
 public class College {
+    private String collegeName;
+    private int deanID;
     
+    public College(String name, int ID) {
+        collegeName = name;
+        deanID = ID;
+    }
+    
+    public void setCollegeName(String name) {
+        collegeName = name;
+    }
+    
+    public String getCollegeName() {
+        return collegeName;
+    }
+    
+    public void setDeanID(int ID) {
+        deanID = ID;
+    }
+    
+    public int getDeanID() {
+        return deanID;
+    }
 }
