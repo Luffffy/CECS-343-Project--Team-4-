@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+import java.util.ArrayList;
 /**
  *
  * @author chealyTahir
@@ -11,12 +6,20 @@
 public class Student_class_test_application {
     public static void main(String[] args) { 
         Student studentA = new Student("studentA", 12345);
-        studentA.addCourse("Art101");
-        studentA.addCourse("Biologh102");
-        studentA.addCourse("Math110");
+        studentA.addCourse("Art101", 3);
+        studentA.addCourse("Biologh102", 4);
+        studentA.addCourse("Math110", 4);
         studentA.selectMajof("Engineering");
         
-        studentA.printStudentCourses();
-        studentA.studentProfile();        
+        System.out.println("get student course from ArrayList: ");
+        ArrayList<String> courseList = new ArrayList();
+        courseList = studentA.getCourseList();
+        for (String course : courseList) {
+            System.out.print (course + " ");
+        }
+        System.out.println();
+        
+        studentA.studentProfile(); 
+        System.out.println();
     }
 }

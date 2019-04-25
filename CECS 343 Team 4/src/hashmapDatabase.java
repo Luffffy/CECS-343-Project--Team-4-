@@ -22,8 +22,8 @@ public class hashmapDatabase {
         majorHashMap.put("Biology", mObject);
         prereCourseHashMap.put("Bio101", prereObject);
         
-        mObject.add_MajorCourse("Bio201");
-        mObject.add_MajorCourse("Bio301");
+        mObject.addCourse("Bio201");
+        mObject.addCourse("Bio301");
         prereObject.add_prerequisiteCourse("GE100");
         prereObject.add_prerequisiteCourse("GE101");
         

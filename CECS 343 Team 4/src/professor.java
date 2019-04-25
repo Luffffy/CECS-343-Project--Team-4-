@@ -50,7 +50,7 @@ public class professor {
         courseInfo courseInfoo;
         for (courseInfo schedule: courseTaught_info){
             courseInfoo = schedule;
-            if (schedule.getCourse() == courseName){
+            if (schedule.getCourseName() == courseName){
                 System.out.print(schedule.getDay() + "_");
                 System.out.print(schedule.getTime() + "_");
                 System.out.println(schedule.getLocation());
@@ -68,7 +68,7 @@ public class professor {
         for (courseInfo schedule: courseTaught_info){
             courseInfoo = schedule;
             if (schedule.getTime() == courseTime){
-                System.out.print(schedule.getCourse() + "_");
+                System.out.print(schedule.getCourseName() + "_");
                 System.out.print(schedule.getDay() + "_");
                 System.out.println(schedule.getLocation());
                 name = schedule.getTime();
