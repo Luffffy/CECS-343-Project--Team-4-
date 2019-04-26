@@ -10,15 +10,16 @@
  */
 public class Student_Control {
       
-    public boolean checkTuition(Student s)
+    public String checkTuition(Student s, Course c)
     {
         if(s.getPaid())
         {
-            return true;
+            s.addCourse(c);
+            return "Class has been added";
         }
         else
         {
-            return false; 
+            return "Student has not paid their tuition";
         }
     }
 }

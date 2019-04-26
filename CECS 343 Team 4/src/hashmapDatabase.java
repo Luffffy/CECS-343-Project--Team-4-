@@ -8,7 +8,7 @@ import java.util.Set;
  * @author chealyTahir
  */
 public class hashmapDatabase {
-    Employee pObject = new Employee("John Smith", 12345);
+    Employee pObject = new Employee("John Smith", 12345, 500);
     major     mObject = new major ("Biology", "Bio101");
     prerequisiteCourse prereObject = new prerequisiteCourse("GE100");
     

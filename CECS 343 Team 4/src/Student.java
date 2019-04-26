@@ -9,13 +9,12 @@ import static java.util.Collections.list;
 public class Student {
     private String studentName;
     private int studentID;
-    private String semester;
     private String major;
     private int totalUnits = 0;
     private boolean paidTuition;
     
-    ArrayList<Course> takenCourse_Arraylist = new ArrayList();
-    ArrayList<Course> course_Arraylist = new ArrayList();
+    ArrayList<Course> takenCourses = new ArrayList();
+    ArrayList<Course> courses = new ArrayList();
        
     public Student () {
         
@@ -36,7 +35,7 @@ public class Student {
     public int getStudentID () {
         return studentID;
     }
-    public void selectMajor(String major) {
+    public void changeMajor(String major) {
         this.major = major;
     }
     public String getMajor (int studentID) {
@@ -47,12 +46,9 @@ public class Student {
     {
         return paidTuition;
     }
-    
-    public void setSemester (String semester) {
-        this.semester = semester;
-    }
+
     public void addTakenCourse(Course takenCourse) {
-        takenCourse_Arraylist.add(takenCourse);
+        takenCourses.add(takenCourse);
     }
     
     public void setTuition(boolean paid)
@@ -60,35 +56,40 @@ public class Student {
         this.paidTuition = paid;
     }
     public ArrayList getCourseHistory() {
-        return takenCourse_Arraylist;
+        return takenCourses;
     }
+    
     public void addCourse(Course c) {
-        course_Arraylist.add(c);
+        courses.add(c);
         totalUnits += c.getCourseUnits();
     }    
+    
     public ArrayList getCourseList() {
-        return course_Arraylist;
+        return courses;
     }
+    
     public int studentTotalUnits() {
         return totalUnits;
     }
+    
     public ArrayList takenCoursesList() {
         
-        return takenCourse_Arraylist;
+        return takenCourses;
     }
+    
     public void printTakenCoursesList() {
-        int size = takenCourse_Arraylist.size();
+        int size = takenCourses.size();
         for (int i = 0; i < size; i++) {
-            System.out.print(takenCourse_Arraylist.get(i).getCourseName() + " | ");
+            System.out.print(takenCourses.get(i).getCourseName() + " | ");
         }
         System.out.println();
     }
     public void studentProfile() {
         System.out.println(studentName + " ID:" + studentID);
         System.out.print("Register courses:");
-        int size = course_Arraylist.size();
+        int size = courses.size();
         for (int i = 0; i < size; i++) {
-            System.out.print(course_Arraylist.get(i).getCourseName() + " | ");
+            System.out.print(courses.get(i).getCourseName() + " | ");
         }
     }
 }

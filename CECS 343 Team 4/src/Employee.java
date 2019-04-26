@@ -18,7 +18,6 @@ public class Employee {
     private int index = 0;
     
     ArrayList<Course> coursesTeaching = new ArrayList<>();
-    ArrayList<Course> courseTaught_info = new ArrayList<>();
     
     public Employee(String name, int id, float salary) {
         this.Name = name;
@@ -33,6 +32,9 @@ public class Employee {
     }
     public float getSalary() {
         return Salary;
+    }
+    public boolean getProfessor(){
+        return isProfessor;
     }
     public void isProfessor(){
         if (coursesTeaching.size() >0)
@@ -61,9 +63,8 @@ public class Employee {
         return coursesTeaching;
     }
     
-    public void set_proSchedule(Course course) {
-        coursesTeaching.add(course);
-        index++;
+    public void addClass(Course c){
+        coursesTeaching.add(c);
     }
 
     public void printTeachingSchedule(){
@@ -77,7 +78,16 @@ public class Employee {
         }
         System.out.println();
     }
-    public void addClass(Course c){
-        coursesTeaching.add(c);
+    
+    public String TeachingScheduleString()
+    {
+        String temp = "";
+        for(Course c: coursesTeaching)
+        {
+            temp += c.getCourseName() + " " + c.getDay() + " " + c.getTime() + " " + c.getLocation() + "\n";
+        }
+        
+        return temp;
     }
+    
 }

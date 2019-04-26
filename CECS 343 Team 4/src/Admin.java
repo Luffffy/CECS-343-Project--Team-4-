@@ -10,4 +10,10 @@
  */
 public class Admin {
     
+    private int ID; 
+    
+    public Admin (int id)
+    {
+        this.ID = id;
+    }
 }
