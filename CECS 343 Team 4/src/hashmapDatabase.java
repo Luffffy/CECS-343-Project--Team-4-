@@ -8,12 +8,12 @@ import java.util.Set;
  * @author chealyTahir
  */
 public class hashmapDatabase {
-    professor pObject = new professor("John Smith", 12345);
+    Employee pObject = new Employee("John Smith", 12345);
     major     mObject = new major ("Biology", "Bio101");
     prerequisiteCourse prereObject = new prerequisiteCourse("GE100");
     
       
-    Map<Integer, professor> professorHashMap = new HashMap<>();
+    Map<Integer, Employee> professorHashMap = new HashMap<>();
     Map<String, major>     majorHashMap     = new HashMap<>();
     Map<String, prerequisiteCourse> prereCourseHashMap = new HashMap<>(); 
        
@@ -28,7 +28,7 @@ public class hashmapDatabase {
         prereObject.add_prerequisiteCourse("GE101");
         
     }
-    void add_professor_Hashmap(professor professorObject) {
+    void add_professor_Hashmap(Employee professorObject) {
         professorHashMap.put(professorObject.getID(), professorObject);
     }
     
@@ -39,10 +39,10 @@ public class hashmapDatabase {
         prereCourseHashMap.put(prereObject.get_mainCourse(), prereObject);
     }
     void print_professor_Hashmap () {
-        Set<Map.Entry<Integer, professor>> entries = professorHashMap.entrySet();
-        for(Map.Entry<Integer, professor> proObj : entries) {
+        Set<Map.Entry<Integer, Employee>> entries = professorHashMap.entrySet();
+        for(Map.Entry<Integer, Employee> proObj : entries) {
             System.out.print(proObj.getKey() + ": ");
-            professor ob = proObj.getValue();
+            Employee ob = proObj.getValue();
             System.out.println(ob.getName());
         }
     }
