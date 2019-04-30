@@ -1,20 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.ArrayList;
 
-/**
- *
- * @author Judy
- */
 public class Department {
     private String departmentName;
     private int chairID;
+    private ArrayList <String> majors = new ArrayList();
     
-    Department(String name, int ID) {
+    public Department(String name, int ID) {
         departmentName = name;
         chairID = ID;
+    }
+    
+    public void addMajor(String major) {
+        majors.add(major);
+    }
+    
+    public void removeMajor(String major) {
+        majors.remove(major);
+    }
+    
+    public ArrayList<String> getMajorList() {
+        return majors;
+    }
+    
+    public String getMajors() {
+        if(majors.isEmpty()) {
+            return "No Majors";
+        } else {
+            String s = "";
+            for(String major: majors){
+                s += major + "\n";
+            }
+            return s;
+        }
     }
     
     public String getDepartmentName() {

@@ -1,20 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.ArrayList;
 
-/**
- *
- * @author Judy
- */
 public class Building {
     private String buildingName;
     private int occupancyLimit;
+    private ArrayList <String> rooms = new ArrayList();
     
     public Building(String name, int limit) {
         occupancyLimit = limit;
         buildingName = name;
+    }
+    
+    public void addRoom(String room) {
+        rooms.add(room);
+    }
+    
+    public void removeRoom(String room) {
+        rooms.remove(room);
+    }
+    
+    public ArrayList<String> getRoomList() {
+        return rooms;
+    }
+    
+    public String getRooms() {
+        if(rooms.isEmpty()) {
+            return "No Rooms";
+        } else {
+            String s = "";
+            for(String room: rooms){
+                s += room + "\n";
+            }
+            return s;
+        }
     }
     
     public int getOccupancyLimit() {
