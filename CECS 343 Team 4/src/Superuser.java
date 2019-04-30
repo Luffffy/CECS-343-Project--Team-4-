@@ -10,4 +10,6 @@
  */
 public class Superuser {
     
+    int user = 000;
+    String pass = "password";
 }
