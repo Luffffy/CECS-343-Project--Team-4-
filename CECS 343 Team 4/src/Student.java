@@ -11,7 +11,7 @@ public class Student {
     private int studentID;
     private String major;
     private int totalUnits = 0;
-    private boolean paidTuition;
+    private boolean paidTuition = false;
     
     ArrayList<Course> takenCourses = new ArrayList();
     ArrayList<Course> courses = new ArrayList();

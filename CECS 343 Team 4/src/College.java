@@ -42,6 +42,8 @@ public class College {
         return collegeName;
     }
     
+    
+    
     public void setDeanID(int ID) {
         deanID = ID;
     }

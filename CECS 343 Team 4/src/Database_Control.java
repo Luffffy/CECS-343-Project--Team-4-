@@ -14,4 +14,14 @@ public class Database_Control {
     {
         db.getUni().addCollege(c);
     }
+    
+    public College getCollege(Database db, String s)
+    {
+        College temp = db.getUni().contains(s);
+        return temp;
+    }
+    public void addDepartment(Database db, Department d)
+    {
+        db.getUni().getCollegeList();
+    }
 }

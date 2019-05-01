@@ -39,4 +39,14 @@ public class University {
     public void setUniversityName(String name) {
         universityName = name;
     }
+    
+    public College contains(String s) {
+        College temp = null;
+        for(College college : colleges) {
+            if(college.getCollegeName().equals(s)) {
+                temp = college;
+            }
+        }
+        return temp;
+    }
 }

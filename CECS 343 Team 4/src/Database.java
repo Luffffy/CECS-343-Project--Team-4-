@@ -1,3 +1,4 @@
+import java.util.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +11,9 @@
  */
 public class Database {
     private University uni;
+    private Map<Integer, Student> Students;
+    private Map<Integer, Employee> Employees; 
+    
     public Database()
     {
         uni = new University("University of Geeks");
@@ -19,6 +23,20 @@ public class Database {
     {
         return uni;
     }
+    
+    public Map getStudents()
+    {
+        return Students;
+    }
+    
+    public Map getEmployees()
+    {
+        return Employees;
+    }
+    
+    
+            
+    
     
         
    
