@@ -2,21 +2,21 @@ import java.util.ArrayList;
 
 public class University {
     private String universityName;
-    private ArrayList <String> colleges = new ArrayList();
+    private ArrayList <College> colleges = new ArrayList();
     
     public University(String name) {
         universityName = name;
     }
     
-    public void addcCollege(String college) {
+    public void addCollege(College college) {
         colleges.add(college);
     }
     
-    public void removeCollege(String college) {
+    public void removeCollege(College college) {
         colleges.remove(college);
     }
     
-    public ArrayList<String> getCollegeList() {
+    public ArrayList<College> getCollegeList() {
         return colleges;
     }
     
@@ -25,8 +25,8 @@ public class University {
             return "No Colleges";
         } else {
             String s = "";
-            for(String college: colleges){
-                s += college + "\n";
+            for(College college: colleges){
+                s += college.getCollegeName() + "\n";
             }
             return s;
         }

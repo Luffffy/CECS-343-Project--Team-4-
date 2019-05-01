@@ -8,18 +8,10 @@
  *
  * @author Judy
  */
-public class Superuser {
+public class Database_Control {
     
-    private int user = 000;
-    private String pass = "password";
-    
-    public int UserName()
+    public void addCollege(Database db, College c)
     {
-        return user;
-    }
-    
-    public String Password()
-    {
-        return pass;
+        db.getUni().addCollege(c);
     }
 }

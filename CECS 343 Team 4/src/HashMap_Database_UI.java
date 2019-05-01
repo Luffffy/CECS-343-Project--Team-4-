@@ -247,7 +247,7 @@ public class HashMap_Database_UI extends javax.swing.JFrame {
         String pre_majorName = "";
         String majorName = "";
         ArrayList<String> course_Arraylist = new ArrayList();
-        major majorObject = new major();
+        Major majorObject = new Major();
         hashmapDatabase hashmapObject = new hashmapDatabase();
     while(majorName == pre_majorName) {    
         if(majorName_txt.getText().length() !=0) {

@@ -9,12 +9,12 @@ import java.util.Set;
  */
 public class hashmapDatabase {
     Employee pObject = new Employee("John Smith", 12345, 500);
-    major     mObject = new major ("Biology", "Bio101");
+    Major     mObject = new Major ("Biology", "Bio101");
     prerequisiteCourse prereObject = new prerequisiteCourse("GE100");
     
       
     Map<Integer, Employee> professorHashMap = new HashMap<>();
-    Map<String, major>     majorHashMap     = new HashMap<>();
+    Map<String, Major>     majorHashMap     = new HashMap<>();
     Map<String, prerequisiteCourse> prereCourseHashMap = new HashMap<>(); 
        
     public hashmapDatabase() {
@@ -32,7 +32,7 @@ public class hashmapDatabase {
         professorHashMap.put(professorObject.getID(), professorObject);
     }
     
-    void add_major_Hashmap(major majorObject) {
+    void add_major_Hashmap(Major majorObject) {
         majorHashMap.put(majorObject.get_majorName(), majorObject);
     }
     void add_prereCourse_Hashmap(prerequisiteCourse prereObject) {
@@ -47,10 +47,10 @@ public class hashmapDatabase {
         }
     }
     void print_major_Hashmap() {
-        Set<Map.Entry<String, major>> entries = majorHashMap.entrySet();
-        for(Map.Entry<String, major> majorObj : entries) {
+        Set<Map.Entry<String, Major>> entries = majorHashMap.entrySet();
+        for(Map.Entry<String, Major> majorObj : entries) {
             System.out.print("'" + majorObj.getKey() + "' major contain courses: ");
-            major ob = majorObj.getValue();
+            Major ob = majorObj.getValue();
             ob.print_MajorCourses(ob.get_majorName());           
         }    
     }

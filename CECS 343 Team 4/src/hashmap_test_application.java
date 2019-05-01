@@ -14,7 +14,7 @@ public class hashmap_test_application {
         System.out.println();
         
         System.out.println("Database of major object after add on Chemistry major: ");
-        major chem_major = new major("Chemistry");
+        Major chem_major = new Major("Chemistry");
         chem_major.add_MajorCourse("chem2");
         chem_major.add_MajorCourse("chem3");
         chem_major.add_MajorCourse("chem4");

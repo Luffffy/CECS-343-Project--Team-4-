@@ -15,22 +15,22 @@ public class Course {
     private String courseName;
     private int courseID;
     private int courseUnits;
+    private Employee professor; 
     private String day;
     private String time;
-    private String location;
-    private String building;
-    private String room;
+
     
-    ArrayList<String> prereCourse_Arraylist = new ArrayList();
+    ArrayList<Course> preReq = new ArrayList();
     
     public Course() {
         
     }
-    public Course(String courseName, int courseID) {
+    public Course(String courseName, int courseID, Employee prof) {
         this.courseName = courseName;
         this.courseID = courseID;
+        this.professor = prof; 
     }
-    public Course(String courseName, String day, String time, String location){
+    public Course(String courseName, String day, String time){
         this.courseName = courseName;
         this.day = day;
         this.time = time;
@@ -54,31 +54,18 @@ public class Course {
     public int getCourseUnits(){
         return this.courseUnits;
     }
-    public void addPrereCourse (String prerequisiteCourse) {
-        prereCourse_Arraylist.add(prerequisiteCourse);
+    public void addPrereCourse (Course prerequisiteCourse) {
+        preReq.add(prerequisiteCourse);
     }
     public ArrayList getPrerequisiteCourseList() {
-        return prereCourse_Arraylist;
+        return preReq;
     }
     public boolean courseHasPrerequisite () {
-        if (!prereCourse_Arraylist.isEmpty())
+        if (!preReq.isEmpty())
             return true;
         return false;
     }
-    public void setCourseLocation(String building, String room){
-        this.building = building;
-        this.room = room;
-        this.location = building + room;
-    }
-    public String getLocation(){
-        return location;
-    }
-    public String getCourseBuiding(){
-        return building;
-    }
-    public String getCourseRoom() {
-        return room;
-    }
+
     public void setDay(String day) {
         this.day = day;
     }

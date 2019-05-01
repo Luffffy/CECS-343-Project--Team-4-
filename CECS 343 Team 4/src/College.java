@@ -3,22 +3,22 @@ import java.util.ArrayList;
 public class College {
     private String collegeName;
     private int deanID;
-    private ArrayList <String> departments = new ArrayList();
+    private ArrayList <Department> departments = new ArrayList();
     
     public College(String name, int ID) {
         collegeName = name;
         deanID = ID;
     }
     
-    public void addDepartment(String department) {
+    public void addDepartment(Department department) {
         departments.add(department);
     }
     
-    public void removeDepartment(String department) {
+    public void removeDepartment(Department department) {
         departments.remove(department);
     }
     
-    public ArrayList<String> getDepartmentList() {
+    public ArrayList<Department> getDepartmentList() {
         return departments;
     }
     
@@ -27,8 +27,8 @@ public class College {
             return "No Departments";
         } else {
             String s = "";
-            for(String department: departments){
-                s += department + "\n";
+            for(Department department: departments){
+                s += department.getDepartmentName() + "\n";
             }
             return s;
         }

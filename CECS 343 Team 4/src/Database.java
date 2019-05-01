@@ -8,18 +8,18 @@
  *
  * @author Judy
  */
-public class Superuser {
-    
-    private int user = 000;
-    private String pass = "password";
-    
-    public int UserName()
+public class Database {
+    private University uni;
+    public Database()
     {
-        return user;
+        uni = new University("University of Geeks");
     }
     
-    public String Password()
+    public University getUni()
     {
-        return pass;
+        return uni;
     }
+    
+        
+   
 }
