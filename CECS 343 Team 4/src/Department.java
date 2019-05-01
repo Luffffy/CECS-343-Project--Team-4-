@@ -10,6 +10,10 @@ public class Department {
         chairID = ID;
     }
     
+    public boolean isEmpty(){
+        return majors.isEmpty();
+    }
+    
     public void addMajor(Major major) {
         majors.add(major);
     }

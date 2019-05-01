@@ -8,6 +8,10 @@ public class University {
         universityName = name;
     }
     
+    public boolean isEmpty() {
+        return colleges.isEmpty();
+    }
+    
     public void addCollege(College college) {
         colleges.add(college);
     }
