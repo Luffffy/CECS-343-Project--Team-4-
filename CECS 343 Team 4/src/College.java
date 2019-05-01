@@ -40,9 +40,7 @@ public class College {
     
     public String getCollegeName() {
         return collegeName;
-    }
-    
-    
+    }    
     
     public void setDeanID(int ID) {
         deanID = ID;
@@ -50,5 +48,15 @@ public class College {
     
     public int getDeanID() {
         return deanID;
+    }
+    
+    public Department contains(String d) {
+        Department temp = null;
+        for(Department department : departments) {
+            if(department.getDepartmentName().equals(d)) {
+                temp = department;
+            }
+        }
+        return temp;
     }
 }

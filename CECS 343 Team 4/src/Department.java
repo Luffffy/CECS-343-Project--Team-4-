@@ -49,4 +49,14 @@ public class Department {
     public void setChairID(int ID) {
         chairID = ID;
     }
+    
+    public Major contains(String m) {
+        Major temp = null;
+        for(Major major : majors) {
+            if(major.getMajorName().equals(m)) {
+                temp = major;
+            }
+        }
+        return temp;
+    }
 }

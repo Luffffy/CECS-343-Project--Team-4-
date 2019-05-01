@@ -15,11 +15,18 @@ public class Database_Control {
         db.getUni().addCollege(c);
     }
     
-    public College getCollege(Database db, String s)
+    public College getCollege(Database db, String c)
     {
-        College temp = db.getUni().contains(s);
+        College temp = db.getUni().contains(c);
         return temp;
     }
+    
+    public Department getDepartment(Database db, String c, String s)
+    {
+        Department temp = db.getUni().contains(c).contains(s);
+        return temp;
+    }
+    
     public void addDepartment(Database db, Department d)
     {
         db.getUni().getCollegeList();

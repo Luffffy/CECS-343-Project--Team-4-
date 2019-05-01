@@ -16,7 +16,7 @@ import static java.util.Collections.list;
 public class Major {
     private String majorName;
     private String courseName;
-    ArrayList<String> course_Arraylist = new ArrayList();
+    ArrayList<Course> courses = new ArrayList();
     
     public Major() {
         //this.majorName = null;
@@ -42,9 +42,10 @@ public class Major {
     public void set_courseName(String name) {
         courseName = name;
     }
+    /*
     public void add_MajorCourse(String courseName) {
         this.courseName = courseName; 
-        course_Arraylist.add(this.courseName); 
+        courses.add(this.courseName); 
     }
     public void remove_MajorCourse(String courseName) {
         int index = 0; 
@@ -71,4 +72,6 @@ public class Major {
             System.out.println("Wrong major name for the major Object");
         System.out.println();
     }
+*/
+    
 }
