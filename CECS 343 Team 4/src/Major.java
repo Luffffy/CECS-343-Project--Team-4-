@@ -13,11 +13,11 @@ public class Major {
     public boolean isEmpty() {
         return courses.isEmpty();
     }
-    public void addDepartment(Course course) {
+    public void addCourse(Course course) {
         courses.add(course);
     }
     
-    public void removeDepartment(Course course) {
+    public void removeCourse(Course course) {
         courses.remove(course);
     }
     
