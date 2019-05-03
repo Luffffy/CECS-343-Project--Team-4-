@@ -20,7 +20,7 @@ public class CECS343Team4 {
     private static int adminIDIncrement = 1;
     private static int studentIDIncrement = 500000001;
     
-    private static Database_Control dbc = new Database_Control();
+   // private static Database_Control dbc = new Database_Control();
     private static Database db = new Database();
     
     /**
@@ -33,9 +33,9 @@ public class CECS343Team4 {
         int loginput = 0;
 
         String password = "";
-        String formatID = "";
+        //String formatID = "";
 
-        ArrayList<Integer> adminIDs = new ArrayList<>();
+       // ArrayList<Integer> adminIDs = new ArrayList<>();
 
         
         
@@ -79,13 +79,13 @@ public class CECS343Team4 {
                     System.out.println("Welcome admin");
 
                     //create admin menu
-                    adminMenuDisplay();
+                    //adminMenuDisplay();
 
                 } else if (loginput > ADMIN_ID_LIMIT && loginput <= STUDENT_ID_LIMIT) {
                     System.out.println("Welcome student");
 
                     // create student menu
-                    studentMenuDisplay();
+                    //studentMenuDisplay();
                 } else {
                     System.out.println("Invalid id recognized\n");
                 }
@@ -108,10 +108,12 @@ public class CECS343Team4 {
         College college;
         Department department;
         Admin adm;
-        Student stu;
+       // Student stu;
         
         String collegeName = "";
         String departmentName = "";
+        String majorName = "";
+        String courseName = "";
         String studentName = "";
         int deanID = 0;
         int chairID = 0;
@@ -120,7 +122,7 @@ public class CECS343Team4 {
         
         
         do {
-            System.out.println("1. Add Admin \n2. Add College \n3. Add Department \n4. Add Major \n5. Add Courses \n6. Add Student \n7. Edit \n8. Delete \n9. Back");
+            System.out.println("\nSuperUser Priviledges \n1. Add Admin \n2. Add College \n3. Add Department \n4. Add Major \n5. Add Courses \n6. Add Student \n7. Edit \n8. Delete \n9. Back");
 
             try {
 
@@ -186,10 +188,12 @@ public class CECS343Team4 {
                         System.out.println("What college would you like to add a department to?");
                         //dbc.getCollege(db, sc1.nextLine());
 
-                        System.out.println("Enter department name");
+                        
 
                         //character limit check
                         do {
+                            System.out.println("Enter department name");
+                            
                             departmentName = sc1.nextLine();
                             if (departmentName.length() > 60) {
                                 System.out.println("Too many characters for department name");
@@ -220,15 +224,35 @@ public class CECS343Team4 {
                         break;
 
                     case 4:
+                        sc1.nextLine();
                         System.out.println("What department would you like to add a major to?");
                         // total of 50 majors per department
                         
+                        //character limit check
+                        do {
+                            System.out.println("Enter the major name");  
+                            
+                            majorName = sc1.nextLine();
+                            if (majorName.length() > 60) {
+                                System.out.println("Too many characters for department name");
+                            }
+                        } while (majorName.length() > 60);
                         
-                        System.out.println("Enter the major name");
                         break;
 
                     case 5:
-                        System.out.println("Adding courses test");
+                        System.out.println("What major would you like to add a course to?");
+                        
+                        
+                        //character limit check
+                        do {
+                            System.out.println("Enter course name");
+                            
+                            courseName = sc1.nextLine();
+                            if (courseName.length() > 60) {
+                                System.out.println("Too many characters for department name");
+                            }
+                        } while (courseName.length() > 60);
                         // total of 100 courses per major
                         break;
 
@@ -242,22 +266,23 @@ public class CECS343Team4 {
 
                         studentName = sc1.nextLine();
 
-                        stu = new Student(studentName, studentIDIncrement);
+                        //stu = new Student(studentName, studentIDIncrement);
                         studentIDIncrement++;
                         // currently there is no method in the database control class to insert a student into the database
 
                         break;
                     case 7:
                         System.out.println("What would you like to edit");
-                        edit_deleteMenu();
+                        edit_Menu();
                         break;
                     case 8:
                         System.out.println("What would you like to delete");
-                        edit_deleteMenu();
+                       // delete_Menu();
                         break;
                         
                     case 9:
                         System.out.println("Going back to login.");
+                        sc1.nextLine();
                         return;
                     default:
                         System.out.println("Invalid option number\n");
@@ -266,10 +291,9 @@ public class CECS343Team4 {
             } catch (Exception e) {
                 System.out.println("Invalid input");
                 sc1.next();
-
             }
 
-        } while (optionSelect != 7);
+        } while (optionSelect != 9);
  }
        
 /*
@@ -286,6 +310,7 @@ public class CECS343Team4 {
     
     
     */
+    /*
     public static void adminMenuDisplay() {
         System.out.println("1. Add College \n2. Add Department \n3. Add Major \n4. Add Courses \n5. Add Student \n6. Back");
 
@@ -321,7 +346,7 @@ public class CECS343Team4 {
             
         }
     }
-
+*//*
     public static void studentMenuDisplay() {
         System.out.println("1. Add course \n2. Remove course \n3. Select major \n4. Back");
 
@@ -350,29 +375,26 @@ public class CECS343Team4 {
         }
 
     }
-
+*/
     public static void printIDs(int ids) {
         //for (int i = 0; i < ids.size(); i++) {
             System.out.println("ID#: " + String.format("%09d", ids));
         //}
     }
     
-   
-    public static void insertColleges(){
-        
-    }
     
-    
-    
-    public static void edit_deleteMenu(){
-       int input = 0;
+    public static void edit_Menu(){
+       sc1.nextLine();
+        int input = 0;
 
         // College, Department, Major, Courses, Session, Building, Room, Student, Employee, Option to go back
-        System.out.println("1. College \n2. Department \n3. Major \n4. Courses \n5. Session \n6. Building \n7. Room \n8. Student \n9. Employee \n10. Back");
-    
+        
         do {
+             System.out.println("\n1. College \n2. Department \n3. Major \n4. Courses \n5. Session \n6. Building \n7. Room \n8. Student \n9. Employee \n10. Back");
+    
             try {
-                switch (sc1.nextInt()) {
+                input = sc1.nextInt();
+                switch (input) {
                     case 1:
                         //College
                         break;
@@ -402,16 +424,21 @@ public class CECS343Team4 {
                         //Employee
                         break;
                     case 10:
-                        //Go back
-                        return;
+                        //Go back to previous menu
+                        /*
+                        dont need to add any logic here
+                        */
+                        sc1.nextLine();
+                        break;
+                        
                     default:
-                        System.out.println("Invalid input");
+                        System.out.println("Invalid option number");
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input");
+                sc1.nextLine();
             }
         } while (input != 10);
-
     }
 }
 
