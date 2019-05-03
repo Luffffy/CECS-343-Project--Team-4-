@@ -10,11 +10,11 @@
  */
 public class Student_Control {
       
-    public String checkTuition(Student s, Course c)
+    public String checkTuition(Student s, Session c)
     {
         if(s.getPaid())
         {
-            s.addCourse(c);
+            s.addSession(c);
             return "Class has been added";
         }
         else

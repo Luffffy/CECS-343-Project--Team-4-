@@ -13,8 +13,8 @@ public class Student {
     private int totalUnits = 0;
     private boolean paidTuition = false;
     
-    ArrayList<Session> takenCourses = new ArrayList();
-    ArrayList<Session> courses = new ArrayList();
+    ArrayList<Course> takenCourses = new ArrayList();
+    ArrayList<Session> sessions = new ArrayList();
        
     public Student () {
         
@@ -47,25 +47,34 @@ public class Student {
         return paidTuition;
     }
 
-    public void addTakenCourse(Session takenCourse) {
-        takenCourses.add(takenCourse);
+    public void addTakenCourse(Course c) {
+        takenCourses.add(c);
+    }
+    
+    public void removeTakenCourse(Course c) {
+        takenCourses.remove(c);
     }
     
     public void setTuition(boolean paid)
     {
         paidTuition = paid;
     }
-    public ArrayList getCourseHistory() {
-        return takenCourses;
-    }
+//    public ArrayList getCourseHistory() {
+//        return takenCourses;
+//    }
     
-    public void addCourse(Session c) {
-        courses.add(c);
-        totalUnits += c.getCourseUnits();
+    public void addSession(Session c) {
+        sessions.add(c);
+        totalUnits += c.getCourse().getCourseUnits();
     }    
     
-    public ArrayList getCourseList() {
-        return courses;
+    public void removeSession(Session s) {
+        sessions.remove(s);
+        totalUnits -= s.getCourse().getCourseUnits();
+    }
+    
+    public ArrayList getSessionList() {
+        return sessions;
     }
     
     public int studentTotalUnits() {
@@ -87,9 +96,9 @@ public class Student {
     public void studentProfile() {
         System.out.println(studentName + " ID:" + studentID);
         System.out.print("Register courses:");
-        int size = courses.size();
+        int size = sessions.size();
         for (int i = 0; i < size; i++) {
-            System.out.print(courses.get(i).getCourseName() + " | ");
+            System.out.print(sessions.get(i).getCourse().getCourseName() + " | ");
         }
     }
 }

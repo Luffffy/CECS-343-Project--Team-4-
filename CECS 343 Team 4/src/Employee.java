@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.util.*;
 import java.util.ArrayList;
 import static java.util.Collections.list;
-/**
- *
- * @author chealyTahir
- */
+
 public class Employee {
     private String Name;
     private int ID;
@@ -17,7 +9,7 @@ public class Employee {
     private boolean isProfessor;
     private int index = 0;
     
-    ArrayList<Course> coursesTeaching = new ArrayList<>();
+    ArrayList<Session> sessionsTeaching = new ArrayList<>();
     
     public Employee(String name, int id, float salary) {
         this.Name = name;
@@ -27,17 +19,29 @@ public class Employee {
     public String getName() {
         return Name;
     }
+    
+    public void setName(String name) {
+        this.Name = name;
+    }
+    
     public int getID() {
         return ID;
     }
+    
     public float getSalary() {
         return Salary;
     }
+    
+    public void setSalary(float salary) {
+        this.Salary = salary;
+    }
+    
     public boolean getProfessor(){
         return isProfessor;
     }
+    
     public void isProfessor(){
-        if (coursesTeaching.size() >0)
+        if (sessionsTeaching.size() >0)
         {
             isProfessor = true;
         }
@@ -58,37 +62,41 @@ public class Employee {
             System.out.println(Name + " is not a professor.");
         }
     }
-    public ArrayList getTeachingSchedule()
+    public ArrayList getSessionList()
     {
-        return coursesTeaching;
+        return sessionsTeaching;
     }
     
-    public void addClass(Course c){
-        coursesTeaching.add(c);
+    public void addSession(Session c){
+        sessionsTeaching.add(c);
+    }
+    
+    public void removeSession(Session s) {
+        sessionsTeaching.remove(s);
     }
 
     public void printTeachingSchedule(){
-        int size = coursesTeaching.size();
+        int size = sessionsTeaching.size();
         for (int i = 0; i < size; i++) {
-            System.out.print(coursesTeaching.get(i).getCourseName() + " ");
-            System.out.print(coursesTeaching.get(i).getDay() + " ");
-            System.out.print(coursesTeaching.get(i).getTime() + " ");
+            System.out.print(sessionsTeaching.get(i).getCourse().getCourseName() + " ");
+            System.out.print(sessionsTeaching.get(i).getDayName() + " ");
+            System.out.print(sessionsTeaching.get(i).getTimeName() + " ");
             //System.out.println(coursesTeaching.get(i).getLocation());
             
         }
         System.out.println();
     }
     
-    public String TeachingScheduleString()
-    {
-        String temp = "";
-        for(Course c: coursesTeaching)
-        {
-            //temp += c.getCourseName() + " " + c.getDay() + " " + c.getTime() + " " + c.getLocation() + "\n";
-        }
-        
-        return temp;
-    }
+//    public String TeachingScheduleString()
+//    {
+//        String temp = "";
+//        for(Course c: coursesTeaching)
+//        {
+//            //temp += c.getCourseName() + " " + c.getDay() + " " + c.getTime() + " " + c.getLocation() + "\n";
+//        }
+//        
+//        return temp;
+//    }
     
     public String toString()
     {

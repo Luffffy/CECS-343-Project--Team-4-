@@ -21,10 +21,11 @@ public class Session {
     private boolean semester; //true spring, false fall
     private Date startTime;
     private Date endTime;
+    private Course course;
     
     //arraylists of students if this is empty then we can remove
    
-    public Session(int profID, int day, boolean semester, int units, Building building, Room room, Date startTime, Date endTime)
+    public Session(int profID, int day, boolean semester, int units, Building building, Room room, Date startTime, Date endTime, Course course)
     {
         this.profID = profID;
         this.day = day;
@@ -34,6 +35,7 @@ public class Session {
         this.room = room;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.course = course;
     }
     
     
@@ -120,5 +122,13 @@ public class Session {
     
     public String toString(){
         return getDayName() + " " + getTimeName();
+    }
+    
+    public boolean getSemester() {
+        return semester;
+    }
+    
+    public Course getCourse() {
+        return course;
     }
 }
