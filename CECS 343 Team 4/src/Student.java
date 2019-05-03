@@ -13,7 +13,7 @@ public class Student {
     private int totalUnits = 0;
     private boolean paidTuition = false;
     
-    ArrayList<Course> takenCourses = new ArrayList();
+    ArrayList<Pair> takenCourses = new ArrayList();
     ArrayList<Session> sessions = new ArrayList();
        
     public Student () {
@@ -47,12 +47,16 @@ public class Student {
         return paidTuition;
     }
 
-    public void addTakenCourse(Course c) {
-        takenCourses.add(c);
+    public void addTakenCourse(Course c, char g) { //use this to assign grades, all courses taken should have grades
+        takenCourses.add(new Pair(c, g));
     }
     
     public void removeTakenCourse(Course c) {
-        takenCourses.remove(c);
+        for(Pair pair: takenCourses) {
+            if(pair.getCourse() == c) {
+                takenCourses.remove(pair);
+            }
+        }
     }
     
     public void setTuition(boolean paid)
@@ -89,10 +93,11 @@ public class Student {
     public void printTakenCoursesList() {
         int size = takenCourses.size();
         for (int i = 0; i < size; i++) {
-            System.out.print(takenCourses.get(i).getCourseName() + " | ");
+            System.out.print(takenCourses.get(i).getCourse().getCourseName() + ": " + takenCourses.get(i).getGrade() +  " | ");
         }
         System.out.println();
     }
+    
     public void studentProfile() {
         System.out.println(studentName + " ID:" + studentID);
         System.out.print("Register courses:");
