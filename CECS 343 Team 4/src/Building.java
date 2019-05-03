@@ -60,6 +60,10 @@ public class Building {
         occupancyLimit = limit;
     }
     
+    public int getTotalOccupancy() {
+        return totalOccupancy;
+    }
+    
     public String getBuildingName() { 
         return buildingName;
     }

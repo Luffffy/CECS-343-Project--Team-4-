@@ -73,7 +73,7 @@ public class Employee {
             System.out.print(coursesTeaching.get(i).getCourseName() + " ");
             System.out.print(coursesTeaching.get(i).getDay() + " ");
             System.out.print(coursesTeaching.get(i).getTime() + " ");
-            System.out.println(coursesTeaching.get(i).getLocation());
+            //System.out.println(coursesTeaching.get(i).getLocation());
             
         }
         System.out.println();
@@ -84,10 +84,15 @@ public class Employee {
         String temp = "";
         for(Course c: coursesTeaching)
         {
-            temp += c.getCourseName() + " " + c.getDay() + " " + c.getTime() + " " + c.getLocation() + "\n";
+            //temp += c.getCourseName() + " " + c.getDay() + " " + c.getTime() + " " + c.getLocation() + "\n";
         }
         
         return temp;
+    }
+    
+    public String toString()
+    {
+        return "Name: " + Name +  " ID: " + ID; 
     }
     
 }
