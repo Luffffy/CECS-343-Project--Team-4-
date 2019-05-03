@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -22,7 +22,7 @@ public class Session {
     private Date startTime;
     private Date endTime;
     private Course course;
-    
+    private ArrayList <Student> students = new ArrayList();
     //arraylists of students if this is empty then we can remove
    
     public Session(int profID, int day, boolean semester, int units, Building building, Room room, Date startTime, Date endTime, Course course)
@@ -130,5 +130,21 @@ public class Session {
     
     public Course getCourse() {
         return course;
+    }
+    
+        public boolean isEmpty() {
+        return students.isEmpty();
+    }
+    
+    public void addStudent(Student s) {
+        students.add(s);
+    }
+    
+    public void removeSession(Student s) {
+        students.remove(s);
+    }
+    
+    public ArrayList<Student> getStudentList() {
+        return students;
     }
 }

@@ -1,35 +1,19 @@
-
 import java.util.ArrayList;
 import java.util.Date;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author chealyTahir
- */
 public class Course {
     private String courseName;
-    private int courseID;
     private int courseUnits;
-    
-
-    
-    ArrayList<Course> preReq = new ArrayList();
+    private ArrayList<Course> preReq = new ArrayList();
+    private ArrayList <Session> sessions = new ArrayList();
     
     public Course() {
         
     }
-    public Course(String courseName, int courseID, Employee prof) {
+    public Course(String courseName, int units) {
         this.courseName = courseName;
-        this.courseID = courseID;
-        
+        courseUnits = units;
     }
-
     
     public void setCourseName (String courseName ) {
         this.courseName = courseName;
@@ -37,14 +21,6 @@ public class Course {
     
     public String getCourseName () {
         return this.courseName;
-    }
-    
-    public void setCourseID(int courseID){
-        this.courseID = courseID;
-    }
-    
-    public int getCourseID (){
-        return this.courseID;
     }
     
     public void setCourseUnits(int courseUnits) {
@@ -59,14 +35,30 @@ public class Course {
         preReq.add(prerequisiteCourse);
     }
     
+    public void removePreReqCourse(Course c) {
+        preReq.remove(c);
+    }
+    
     public ArrayList getPrerequisiteCourseList() {
         return preReq;
     }
     public boolean courseHasPrerequisite () {
-        if (!preReq.isEmpty())
-            return true;
-        return false;
+        return !preReq.isEmpty();
     }
     
+    public boolean isEmpty() {
+        return sessions.isEmpty();
+    }
     
+    public void addSession(Session session) {
+        sessions.add(session);
+    }
+    
+    public void removeSession(Session session) {
+        sessions.remove(session);
+    }
+    
+    public ArrayList<Session> getSessionList() {
+        return sessions;
+    }
 }
