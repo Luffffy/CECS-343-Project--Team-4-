@@ -98,6 +98,11 @@ public class CECS343Team4 {
 
     }
 
+    /*
+    Edit or delete:
+        options - College, Department, Major, Courses, Session, Building, Room, Student, Employee, Option to go back
+    */
+    
     public static void superUserMenuDisplay() {
         
         College college;
@@ -110,53 +115,55 @@ public class CECS343Team4 {
         String studentName = "";
         int deanID = 0;
         int chairID = 0;
+        int optionSelect = 0;
         
         
         
-        System.out.println("1. Add Admin \n2. Add College \n3. Add Department \n4. Add Major \n5. Add Courses \n6. Add Student \n7. Back");
-        
-        try {
-            switch (sc1.nextInt()) {
-                case 1:
-                    System.out.println("new Admin assigned");
-                    
-                    adm = new Admin(adminIDIncrement);
-                    
-                    adminIDIncrement++;
-                    break;
-                    
-                    
-                case 2:
-                    sc1.nextLine();
-                    System.out.println("Enter college name");
-                    
-                    //character limit checking for college name
-                    do{
-                        collegeName = sc1.nextLine();
-                        if(collegeName.length() > 60){
-                            System.out.println("Too many characters in college name");
-                        }
-                    } while(collegeName.length() > 60);
-                    
-                    
-                    do {
+        do {
+            System.out.println("1. Add Admin \n2. Add College \n3. Add Department \n4. Add Major \n5. Add Courses \n6. Add Student \n7. Edit \n8. Delete \n9. Back");
+
+            try {
+
+                optionSelect = sc1.nextInt();
+
+                switch (optionSelect) {
+                    case 1:
+                        System.out.println("new Admin assigned");
+
+                        adm = new Admin(adminIDIncrement);
+
+                        adminIDIncrement++;
+                        break;
+
+                    case 2:
+                        sc1.nextLine();
+                        System.out.println("Enter college name");
+
+                        //character limit checking for college name
+                        do {
+                            collegeName = sc1.nextLine();
+                            if (collegeName.length() > 60) {
+                                System.out.println("Too many characters in college name");
+                            }
+
+                        } while (collegeName.length() > 60);
+
+                        /*
+                    * Need to implement logic for college
+                    *
+                    *
+                    *
+                         */
                         System.out.println("Enter deanID for this college");
+                        //try{
+                        deanID = sc1.nextInt();
 
-                            deanID = sc1.nextInt();
-                       
-                        
-                        if(deanID < 1 || deanID > ADMIN_ID_LIMIT){
-                            
-                            System.out.println("Invalid dean id");
-                        }
-                    }while (deanID < 1 || deanID > ADMIN_ID_LIMIT);
+                        //catch(Exception e){
+                        //}
+                        college = new College(collegeName, deanID);
 
-                    
-                    college = new College(collegeName, deanID);
-
-                    // have to do check for insertion limit
-                    
-                   /*
+                        // have to do check for insertion limit
+                        /*
                     if(){
                         
                          System.out.println("College is being added.");
@@ -165,95 +172,120 @@ public class CECS343Team4 {
                     else{
                         System.out.println("College already exists.");
                     }
-                    */
-                    
-                    break;
-                    
-                    
-                case 3:
-                    /*
-                    First check if there are any majors to add a department to
+                         */
+                        break;
+
+                    case 3:
+                        /*
+                    First check if there are any colleges to add a department to
                     Yes : display list of options to add a department to
-                    No : throw an error message stating to add a major first.
-                    */
-                    sc1.nextLine(); 
-                    System.out.println("Enter department name");
-                    
-                    //character limit check
-                    do{
-                        departmentName = sc1.nextLine();
-                        if(departmentName.length() > 60){
-                            System.out.println("Too many characters for department name");
-                        }
-                    }while(departmentName.length()> 60);
-                    
-                    // prompt for chairid
-                    System.out.println("Enter in chairID");
-                    
-                    do{
-                        
-                        chairID = sc1.nextInt();
-                        
-                        if(chairID < 0 || chairID > ADMIN_ID_LIMIT){
-                            System.out.println("Invalid ID");
-                        }
-                        
-                    }while(chairID <0 || chairID > ADMIN_ID_LIMIT);
-                    //check for insertion limit
-                    /*
+                    No : throw an error message stating to add a college first.
+                         */
+                        sc1.nextLine();
+
+                        System.out.println("What college would you like to add a department to?");
+                        //dbc.getCollege(db, sc1.nextLine());
+
+                        System.out.println("Enter department name");
+
+                        //character limit check
+                        do {
+                            departmentName = sc1.nextLine();
+                            if (departmentName.length() > 60) {
+                                System.out.println("Too many characters for department name");
+                            }
+                        } while (departmentName.length() > 60);
+
+                        // prompt for chairid
+                        System.out.println("Enter in chairID");
+
+                        //do {
+
+                            chairID = sc1.nextInt();
+
+                            /*if (chairID < 0 || chairID > ADMIN_ID_LIMIT) {
+                                System.out.println("Invalid ID");
+                            }
+
+                        } while (chairID < 0 || chairID > ADMIN_ID_LIMIT);
+                            */
+                        //check for insertion limit
+                        /*
                     Important note: may have to check if the same ids can span multiple heirarchy - adminID = departmentID = chairID.
-                    */
-                      
-                     // college.addDepartment(department);
-                    //department = new Department("Comp", 000000111);
-                    //college.addDepartment(department);
-                    break;
-                    
-                    
-                case 4:
-                    System.out.println("Adding major test");
-                    // total of 50 majors per department
-                    break;
-                    
-                    
-                case 5:
-                    System.out.println("Adding courses test");
-                    // total of 100 courses per major
-                    break;
-                    
-                    
-                case 6:
-                    /*
+                         */
+
+                        // college.addDepartment(department);
+                        //department = new Department("Comp", 000000111);
+                        //college.addDepartment(department);
+                        break;
+
+                    case 4:
+                        System.out.println("What department would you like to add a major to?");
+                        // total of 50 majors per department
+                        
+                        
+                        System.out.println("Enter the major name");
+                        break;
+
+                    case 5:
+                        System.out.println("Adding courses test");
+                        // total of 100 courses per major
+                        break;
+
+                    case 6:
+                        /*
                     Prompt for student name. ID is automatically assigned by increment variable
                     Insert student object into database via database control object.
-                    */
-                    sc1.nextLine();
-                    System.out.println("Enter student name");
-                    
-                    studentName = sc1.nextLine();
-                    
-                    stu = new Student(studentName, studentIDIncrement);
-                    studentIDIncrement++;
-                    // currently there is no method in the database control class to insert a student into the database
-                    
-                    
-                    break;
-                case 7:
-                    System.out.println("Going back to login.");
-                    return;
-                default:
-                    System.out.println("Invalid option number\n");
-                    superUserMenuDisplay();
-                    break;
+                         */
+                        sc1.nextLine();
+                        System.out.println("Enter student name");
+
+                        studentName = sc1.nextLine();
+
+                        stu = new Student(studentName, studentIDIncrement);
+                        studentIDIncrement++;
+                        // currently there is no method in the database control class to insert a student into the database
+
+                        break;
+                    case 7:
+                        System.out.println("What would you like to edit");
+                        edit_deleteMenu();
+                        break;
+                    case 8:
+                        System.out.println("What would you like to delete");
+                        edit_deleteMenu();
+                        break;
+                        
+                    case 9:
+                        System.out.println("Going back to login.");
+                        return;
+                    default:
+                        System.out.println("Invalid option number\n");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+                sc1.next();
+
             }
-        } catch (Exception e) {
-            System.out.println("Invalid input");
-            sc1.next();
-            superUserMenuDisplay();
-        }
 
-    }
-
+        } while (optionSelect != 7);
+ }
+       
+/*
+    
+    
+    Huge space for visual appeal
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    */
     public static void adminMenuDisplay() {
         System.out.println("1. Add College \n2. Add Department \n3. Add Major \n4. Add Courses \n5. Add Student \n6. Back");
 
@@ -286,7 +318,7 @@ public class CECS343Team4 {
         } catch (Exception e) {
             System.out.println("Invalid input\n");
             sc1.next();
-            adminMenuDisplay();
+            
         }
     }
 
@@ -314,7 +346,7 @@ public class CECS343Team4 {
         } catch (Exception e) {
             System.out.println("Invalid input\n");
             sc1.next();
-            studentMenuDisplay();
+            
         }
 
     }
@@ -329,6 +361,58 @@ public class CECS343Team4 {
     public static void insertColleges(){
         
     }
+    
+    
+    
+    public static void edit_deleteMenu(){
+       int input = 0;
+
+        // College, Department, Major, Courses, Session, Building, Room, Student, Employee, Option to go back
+        System.out.println("1. College \n2. Department \n3. Major \n4. Courses \n5. Session \n6. Building \n7. Room \n8. Student \n9. Employee \n10. Back");
+    
+        do {
+            try {
+                switch (sc1.nextInt()) {
+                    case 1:
+                        //College
+                        break;
+
+                    case 2:
+                        //Department
+                        break;
+                    case 3:
+                        //Major
+                        break;
+                    case 4:
+                        //Courses
+                        break;
+                    case 5:
+                        //Session
+                        break;
+                    case 6:
+                        //Building
+                        break;
+                    case 7:
+                        //Room
+                        break;
+                    case 8:
+                        //Student
+                        break;
+                    case 9:
+                        //Employee
+                        break;
+                    case 10:
+                        //Go back
+                        return;
+                    default:
+                        System.out.println("Invalid input");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+            }
+        } while (input != 10);
+
+    }
 }
 
 
@@ -336,3 +420,9 @@ public class CECS343Team4 {
 
 
 // formatID = String.format("%09d", loginput);   // convert user input into string and format for 9 digits
+
+
+/*
+if ( methodToGetObject == null)
+"object doesn't not exist""
+*/
