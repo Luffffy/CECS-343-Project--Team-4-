@@ -13,8 +13,8 @@ public class Student {
     private int totalUnits = 0;
     private boolean paidTuition = false;
     
-    ArrayList<Course> takenCourses = new ArrayList();
-    ArrayList<Course> courses = new ArrayList();
+    ArrayList<Session> takenCourses = new ArrayList();
+    ArrayList<Session> courses = new ArrayList();
        
     public Student () {
         
@@ -47,19 +47,19 @@ public class Student {
         return paidTuition;
     }
 
-    public void addTakenCourse(Course takenCourse) {
+    public void addTakenCourse(Session takenCourse) {
         takenCourses.add(takenCourse);
     }
     
     public void setTuition(boolean paid)
     {
-        this.paidTuition = paid;
+        paidTuition = paid;
     }
     public ArrayList getCourseHistory() {
         return takenCourses;
     }
     
-    public void addCourse(Course c) {
+    public void addCourse(Session c) {
         courses.add(c);
         totalUnits += c.getCourseUnits();
     }    

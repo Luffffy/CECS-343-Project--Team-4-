@@ -43,4 +43,14 @@ public class Major {
     public void setMajorName(String name) {
         majorName = name;
     }
+    
+    public Course contains(String cc) {
+        Course temp = null;
+        for(Course course : courses) {
+            if(course.getCourseName().equals(cc)) {
+                temp = course;
+            }
+        }
+        return temp;
+    }
 }
