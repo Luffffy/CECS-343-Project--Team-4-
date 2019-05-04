@@ -13,6 +13,7 @@ public class College {
     public boolean isEmpty() {
         return departments.isEmpty();
     }
+    
     public void addDepartment(Department department) {
         departments.add(department);
     }

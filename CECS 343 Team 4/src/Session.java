@@ -1,5 +1,6 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,13 +20,14 @@ public class Session {
     private Room room;
     private int units;
     private boolean semester; //true spring, false fall
-    private Date startTime;
-    private Date endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private Course course;
     private ArrayList <Student> students = new ArrayList();
     //arraylists of students if this is empty then we can remove
    
-    public Session(int profID, int day, boolean semester, int units, Building building, Room room, Date startTime, Date endTime, Course course)
+    public Session(int profID, int day, boolean semester, int units, Building building, 
+            Room room, LocalTime startTime, LocalTime endTime, Course course)
     {
         this.profID = profID;
         this.day = day;
@@ -37,9 +39,6 @@ public class Session {
         this.endTime = endTime;
         this.course = course;
     }
-    
-    
-   
     
     public int getProf()
     {
@@ -54,6 +53,20 @@ public class Session {
     public Room getRoom()
     {
         return room;
+    }
+    public LocalTime getStartTime()
+    {
+        return startTime;
+    }
+    
+    public LocalTime getEndTime()
+    {
+        return endTime;
+    }
+    
+    public int getDay()
+    {
+        return day;
     }
     
     public void setProf(int pid)
@@ -76,7 +89,7 @@ public class Session {
         day = d;
     }
     
-    public void setTime(Date s, Date e)
+    public void setTime(LocalTime s, LocalTime e)
     {
         startTime= s;
         endTime = e;
@@ -116,12 +129,12 @@ public class Session {
         return "";
     }
 
-    public String getTimeName() {
+    public String getTimeName() {        
         return startTime.toString() + " - " + endTime.toString();
     }
     
     public String toString(){
-        return getDayName() + " " + getTimeName();
+        return getDayName() + ", " + getTimeName();
     }
     
     public boolean getSemester() {
@@ -132,7 +145,7 @@ public class Session {
         return course;
     }
     
-        public boolean isEmpty() {
+    public boolean isEmpty() {
         return students.isEmpty();
     }
     
@@ -148,3 +161,4 @@ public class Session {
         return students;
     }
 }
+
