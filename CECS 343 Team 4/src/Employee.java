@@ -8,6 +8,7 @@ public class Employee {
     private float Salary; 
     private boolean isProfessor;
     private int index = 0;
+    private boolean isAdmin;
     
     ArrayList<Session> sessionsTeaching = new ArrayList<>();
     
@@ -15,6 +16,7 @@ public class Employee {
         this.Name = name;
         this.ID = id;        
         this.Salary = salary;
+        isAdmin = false;
     }
     public String getName() {
         return Name;
@@ -101,6 +103,14 @@ public class Employee {
     public String toString()
     {
         return "Name: " + Name +  " ID: " + ID; 
+    }
+    
+    public boolean getAdmin() {
+        return isAdmin;
+    }
+    
+    public void setAdmin(boolean value) {
+        isAdmin = value;
     }
     
 }
