@@ -146,40 +146,60 @@ public class Database_Control {
     }
     
     public void addStudent(Database db, Student s)
-    {
-        db.getStudents().put(s.getStudentID(), s);
+    {        
+        System.out.println("Student id: " + s.getStudentID());
+        if(!db.employeeExists(s.getStudentID()))
+        {
+            System.out.println("Student added");
+            db.getEmployees().put(s.getStudentID(), s);
+        }
+        else
+        {
+            System.out.println("Student already exists");
+        }
     }
     
     public void addEmployee(Database db, Employee e)
     {
-        db.getStudents().put(e.getID(), e);
-    }
-    
-    public Student getStudent(Database db, int sID)
-    {
-        if(db.getStudents().containsKey(sID))
+        System.out.println("employee id: " + e.getID());
+        if(!db.employeeExists(e.getID()))
         {
-            return (Student) db.getStudents().get(sID);
+            System.out.println("Employee added");
+            db.getEmployees().put(e.getID(), e);
         }
-        return null;
-    }
-    
-    public Employee getEmployee(Database db, int eID)
-    {
-        if(db.getEmployees().containsKey(eID))
+        else
         {
-            return (Employee) db.getEmployees().get(eID);
+            System.out.println("Employee already exists");
         }
-        return null;
     }
     
-    public boolean studentExists(Database db, int sID)
+    public void setAdmin(Database db, int eID, boolean input)
     {
-        return db.getStudents().containsKey(sID);
+        if(input)
+        {
+            if(db.employeeExists(eID))
+            {
+                db.getEmployee(eID).setAdmin(input);
+                System.out.println("Admin has been set for: " + db.getEmployee(eID).toString());
+            }
+            else
+            {
+                System.out.println("Employee does not exist");
+            }
+        }
+        else
+        {
+            if(db.employeeExists(eID))
+            {
+                db.getEmployee(eID).setAdmin(input);
+                System.out.println("Admin has been removed for: " +  db.getEmployee(eID).toString());
+            }
+            else
+            {
+                System.out.println("Employee does not exist");
+            }
+        }
     }
     
-    public boolean employeeExists(Database db, int eID)
-    {
-        return db.getEmployees().containsKey(eID);
-    }
+    
 }
