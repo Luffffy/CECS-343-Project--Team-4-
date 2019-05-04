@@ -14,6 +14,7 @@ import java.time.*;
  */
 public class Session {
     
+    private String sessionNumber;
     private int profID; 
     private int day;
     private Building building;
@@ -26,9 +27,10 @@ public class Session {
     private ArrayList <Student> students = new ArrayList();
     //arraylists of students if this is empty then we can remove
    
-    public Session(int profID, int day, boolean semester, int units, Building building, 
+    public Session(String sessionNumber, int profID, int day, boolean semester, int units, Building building, 
             Room room, LocalTime startTime, LocalTime endTime, Course course)
     {
+        this.sessionNumber = sessionNumber;
         this.profID = profID;
         this.day = day;
         this.semester = semester;
@@ -38,6 +40,11 @@ public class Session {
         this.startTime = startTime;
         this.endTime = endTime;
         this.course = course;
+    }
+    
+    public String getSessionNumber()
+    {
+        return sessionNumber;
     }
     
     public int getProf()
@@ -67,6 +74,11 @@ public class Session {
     public int getDay()
     {
         return day;
+    }
+    
+    public void setSessionNumber(String s)
+    {
+        sessionNumber = s;
     }
     
     public void setProf(int pid)
@@ -105,6 +117,11 @@ public class Session {
         return room.toString();
     }
   
+    public String getLocation()
+    {
+        return getBuildingName() + " " + getRoomName();
+    }
+    
     public String getDayName(){
         
         switch (day) {

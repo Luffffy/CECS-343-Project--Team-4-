@@ -17,6 +17,9 @@ public class Database {
     public Database()
     {
         uni = new University("University of Geeks");
+        Students = new HashMap<Integer, Student>();
+        Employees = new HashMap<Integer, Employee>();
+        
     }
     
     public University getUni()

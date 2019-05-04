@@ -18,10 +18,10 @@ public class Session_test {
         System.out.println("aS: " + aS + " aE: " + aE);
         System.out.println("bS: " + bS + " bE: " + bE );
         
-        aS = LocalTime.parse("15:00:00");
-        aE = LocalTime.parse("16:00:00");
-        bS = LocalTime.parse("13:00:00");
-        bE = LocalTime.parse("17:00:00");
+        aS = LocalTime.parse("15:00");
+        aE = LocalTime.parse("16:00");
+        bS = LocalTime.parse("13:00");
+        bE = LocalTime.parse("17:00");
         
         if(aS.isBefore(bS) && aE.isAfter(bS))
             System.out.println("Time conflict B starts between A");

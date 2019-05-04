@@ -22,10 +22,6 @@ public class Employee {
         return Name;
     }
     
-    public void setName(String name) {
-        this.Name = name;
-    }
-    
     public int getID() {
         return ID;
     }
@@ -34,6 +30,14 @@ public class Employee {
         return Salary;
     }
     
+    public void setName(String name) {
+        this.Name = name;
+    }
+    
+    public void setID(int id)
+    {
+        this.ID = id;
+    }
     public void setSalary(float salary) {
         this.Salary = salary;
     }
@@ -83,7 +87,7 @@ public class Employee {
             System.out.print(sessionsTeaching.get(i).getCourse().getCourseName() + " ");
             System.out.print(sessionsTeaching.get(i).getDayName() + " ");
             System.out.print(sessionsTeaching.get(i).getTimeName() + " ");
-            //System.out.println(coursesTeaching.get(i).getLocation());
+            System.out.println(sessionsTeaching.get(i).getLocation());
             
         }
         System.out.println();

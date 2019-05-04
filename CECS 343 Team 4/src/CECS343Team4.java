@@ -107,7 +107,7 @@ public class CECS343Team4 {
         
         College college;
         Department department;
-        Admin adm;
+        
        // Student stu;
         
         String collegeName = "";
@@ -130,9 +130,10 @@ public class CECS343Team4 {
 
                 switch (optionSelect) {
                     case 1:
-                        System.out.println("new Admin assigned");
-
-                        adm = new Admin(adminIDIncrement);
+                        Database_Control dbc = new Database_Control();
+                        System.out.println("Enter the ID of the Employee you want to assign as Admin");
+                        int id = sc1.nextInt();
+                        dbc.getEmployee(db, id).setAdmin(true);
 
                         adminIDIncrement++;
                         break;

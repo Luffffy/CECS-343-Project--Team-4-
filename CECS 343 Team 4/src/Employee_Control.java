@@ -1,4 +1,5 @@
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /*
@@ -13,24 +14,44 @@ import java.util.ArrayList;
  */
 public class Employee_Control {
     
-    public String checkClassConflict(Employee e, Course c)
+    public void checkClassConflict(Employee e, Session s)
     {
         boolean canTeach = true;
-        ArrayList<Course> temp = e.getTeachingSchedule();
+        ArrayList<Session> temp = e.getSessionList();
         for(int i = 0; i < temp.size(); i++)
         {
-            if(temp.get(i).getDay().equals(c.getDay()) && temp.get(i).getTime().equals(c.getTime))
+            if(timeConflict(temp.get(i), s))
             {
-                System.out.println("Professor has time Conflict");
                 canTeach = false;
             }
         }
         if(canTeach){
-            e.addClass(c);
-            return "Class has been added";
+            e.addSession(s);
+            System.out.println("Session has been added");
         }
-        else
-            return "Professor has time Conflict.";
         
+        
+    }
+    public boolean timeConflict(Session a, Session b)
+    {
+        LocalTime aS = a.getStartTime();
+        LocalTime aE = a.getEndTime();
+        LocalTime bS = b.getStartTime();
+        LocalTime bE = b.getEndTime();
+        
+        if(a.getDay() == b.getDay())
+        {
+            if(aS.isBefore(bS) && aE.isAfter(bS))
+            {
+            System.out.println("Time conflict B starts between A");
+            return true;
+            }
+            if(bS.isBefore(aS) && bE.isAfter(aS))
+            {
+               System.out.println("Time conflict A starts between B");
+                return true;
+            }
+        }
+        return false;
     }
 }

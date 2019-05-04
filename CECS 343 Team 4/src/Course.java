@@ -61,4 +61,14 @@ public class Course {
     public ArrayList<Session> getSessionList() {
         return sessions;
     }
+    
+    public Session contains(String s) {
+        Session temp = null;
+        for(Session session : sessions) {
+            if(session.getSessionNumber().equals(s)) {
+                temp = session;
+            }
+        }
+        return temp;
+    }
 }
