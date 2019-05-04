@@ -145,6 +145,15 @@ public class Database_Control {
         }
     }
     
+    public void addStudent(Database db, Student s)
+    {
+        db.getStudents().put(s.getStudentID(), s);
+    }
+    
+    public void addEmployee(Database db, Employee e)
+    {
+        db.getStudents().put(e.getID(), e);
+    }
     
     public Student getStudent(Database db, int sID)
     {
