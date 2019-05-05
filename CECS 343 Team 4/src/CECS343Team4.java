@@ -14,9 +14,6 @@ import java.util.Scanner;
 public class CECS343Team4 {
 
     private static Scanner sc1 = new Scanner(System.in);
-    private static final int ADMIN_ID_LIMIT = 500000000;
-    private static final int STUDENT_ID_LIMIT = 999999999;
-
     private static int IDIncrement = 1;
      // user input variables
     private static String employeeName = "";
@@ -25,12 +22,19 @@ public class CECS343Team4 {
     private static String majorName = "";
     private static String courseName = "";
     private static String studentName = "";
+    private static String buildingName = "";
+    private static String roomName = "";
+    private static String sessionNumber = "";
+    private static String input = "";
+    private static boolean semester = false;
     private static float employeeSalary = 0;
     private static int employeeID = 0;
     private static int deanID = 0;
     private static int chairID = 0;
     private static int optionSelect = 0;
     private static int units = 0;
+    private static int limit = 0;
+    private static int id = 0;
     
 
     private static Database_Control dbc = new Database_Control();
@@ -51,14 +55,6 @@ public class CECS343Team4 {
        // ArrayList<Integer> adminIDs = new ArrayList<>();
 
 
-
-
-        // 3 possible interfaces
-        /*
-         * one for superuser
-         * one for admin
-         * one for student
-         */
         do {
 
             System.out.println("Enter user ID. Enter a negative to terminate");
@@ -88,13 +84,13 @@ public class CECS343Team4 {
                         System.out.println("Invalid password returning to main login");
                     }
 
-                } else if (true) {
+                } else if (dbc.getEmployee(db, loginput).getAdmin()) {
                     System.out.println("Welcome admin");
 
                     //create admin menu
                     //adminMenuDisplay();
 
-                } else if (loginput > ADMIN_ID_LIMIT && loginput <= STUDENT_ID_LIMIT) {
+                } else if (dbc.getStudent(db, loginput) == null) {
                     System.out.println("Welcome student");
 
                     // create student menu
@@ -125,13 +121,14 @@ public class CECS343Team4 {
         Course course;
         Employee employee;
         Student student;
-
-      
+        Session session;
+        Building building;
+        Room room;
 
 
 
         do {
-            System.out.println("\nSuperUser Priviledges \n1. Add Admin \n2. Add Employee \n3. Add College \n4. Add Department \n5. Add Major \n6. Add Courses \n7. Add Student \n8. Edit \n9. Delete \n10. Back");
+            System.out.println("\nSuperUser Priviledges \n1. Add Admin \n2. Add Employee \n3. Add College \n4. Add Department \n5. Add Major \n6. Add Courses \n7. Add Student \n8. Add Session \n9. Add Building \n10. Add Room \n11. Edit \n12. Delete \n13. Back");
 
             try {
 
@@ -146,7 +143,7 @@ public class CECS343Team4 {
                         int id = sc1.nextInt();
                         
                         dbc.setAdmin(db, id, true);
-                        
+                        sc1.nextLine();
                         break;
 
                     case 2:
@@ -166,6 +163,7 @@ public class CECS343Team4 {
                         break;
                         
                     case 3:
+                        //add college
                         sc1.nextLine();
                         
                         //character limit checking for college name
@@ -198,6 +196,7 @@ public class CECS343Team4 {
                         break;
 
                     case 4:
+                        //add department
                         /*
                     First check if there are any colleges to add a department to
                     Yes : display list of options to add a department to
@@ -235,6 +234,7 @@ public class CECS343Team4 {
                         break;
 
                     case 5:
+                        //add major
                         sc1.nextLine();
 
                         System.out.println("\nWhat college would you like to add a major to?");
@@ -271,7 +271,7 @@ public class CECS343Team4 {
                         break;
 
                     case 6:
-                        
+                        //add course
                         sc1.nextLine();
                         
                         System.out.println("\nWhat college would you like to add a course to?");
@@ -331,12 +331,12 @@ public class CECS343Team4 {
                         break;
 
                     case 7:
-                       
+                        // add student
                         sc1.nextLine();
                         System.out.println("Enter student name");
 
                         studentName = sc1.nextLine();
-                       
+                        
                         student = new Student(studentName, IDIncrement);
                         dbc.addStudent(db, student);
                         IDIncrement++;
@@ -344,15 +344,124 @@ public class CECS343Team4 {
                         break;
                         
                     case 8:
+                        //add session
+                        sc1.nextLine();
+                        
+                        System.out.println("Enter in the college you wish to add a session to");
+                        collegeName = sc1.nextLine();
+                        
+                        //check if college exists before moving forward
+                        if(dbc.getCollege(db, roomName)== null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the department you wish to add a session to");
+                        departmentName = sc1.nextLine();
+                        
+                        // check if department exists before moving forward
+                        if(dbc.getDepartment(db, collegeName, departmentName) == null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the major you wish to add a session to");
+                        majorName = sc1.nextLine();
+                        
+                        //check if major exists before moving forward
+                        if(dbc.getMajor(db, collegeName, departmentName, majorName) == null){
+                            System.out.println("Major doesn't exist");
+                            break;
+                        }
+                        
+                        
+                        System.out.println("Enter the course you wish to add a session to");
+                        courseName = sc1.nextLine();
+                        
+                        //check if course exists before moving forward
+                        
+                        if(dbc.getCourse(db, collegeName, departmentName, majorName, courseName) == null){
+                            System.out.println("Course doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter the session number");
+                        sessionNumber = sc1.nextLine();
+                        
+                        System.out.println("Enter in the professor id");
+                        id = sc1.nextInt();
+                        
+                        System.out.println("Enter in the semester fall or spring");
+                        input = sc1.nextLine();
+                        if(input.compareToIgnoreCase("fall") == 0){
+                            semester = false;
+                        }
+                        else if(input.compareToIgnoreCase("spring") == 0){
+                            semester = true;
+                        }
+                        else{
+                            System.out.println("Invalid input");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the day");
+                        
+                        
+                        break;
+                        
+                    case 9:
+                        sc1.nextLine();
+                        //add building
+                        System.out.println("Enter in the building name");
+                        String name = sc1.nextLine();
+                        
+                        System.out.println("Enter in the occupancy limit");
+                        limit = sc1.nextInt();
+                        
+                        building = new Building(name,limit);
+                        dbc.addBuilding(db, building);
+                        
+                        break;
+                        
+                        
+                    case 10:
+                        //add room
+                        sc1.nextLine();
+                        
+                        System.out.println("Enter the building to insert room into");
+                        buildingName = sc1.nextLine();
+                       
+                        //check if building exists before moving forward
+                        if(dbc.getBuilding(db, buildingName)== null){
+                            System.out.println("Building doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the room name");
+                        roomName = sc1.nextLine();
+                        
+                        System.out.println("Enter in the room size");
+                        limit = sc1.nextInt();
+                        
+                        room = new Room(roomName,limit);
+                        dbc.addRoom(db, buildingName, room);
+                        
+                        break;
+                        
+                        
+                    case 11:
+                        //Edit
                         System.out.println("What would you like to edit");
                         //edit_Menu();
                         break;
-                    case 9:
+                    case 12:
+                        //Delete
                         System.out.println("What would you like to delete");
                         delete_Menu();
                         break;
 
-                    case 10:
+                    case 13:
+                        //Return
                         System.out.println("Going back to login.");
                         sc1.nextLine();
                         return;
@@ -365,7 +474,7 @@ public class CECS343Team4 {
                 sc1.nextLine();
             }
 
-        } while (optionSelect != 10);
+        } while (optionSelect != 13);
  }
 
 /*
@@ -597,15 +706,48 @@ public class CECS343Team4 {
                         break;
                     case 6:
                         //Building
+                        sc1.nextLine();
+                        
+                        System.out.println("Enter in the building you wish to delete");
+                        buildingName = sc1.nextLine();
+                        
+                        dbc.removeBuilding(db, buildingName);
+                        
                         break;
                     case 7:
                         //Room
+                        sc1.nextLine();
+                        
+                        System.out.println("Enter in the building you wish to delete a room from");
+                        buildingName = sc1.nextLine();
+                        
+                        if(dbc.getBuilding(db, buildingName)==null){
+                            System.out.println("Building doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the room you wish to delete");
+                        roomName = sc1.nextLine();
+                        
+                        dbc.removeRooms(db, buildingName, roomName);
+                        
                         break;
                     case 8:
                         //Student
+                        sc1.nextLine();
+                        System.out.println("Enter in the ID of the student you wish to delete.");
+                        
+                        id = sc1.nextInt();
+                        dbc.removeStudent(db, id);
+                        
                         break;
                     case 9:
                         //Employee
+                        sc1.nextLine();
+                        System.out.println("Enter in the ID of the employee you wish to delete");
+                        id = sc1.nextInt();
+                        dbc.removeEmployee(db, id);
+                        
                         break;
                     case 10:
                         //Go back to previous menu
