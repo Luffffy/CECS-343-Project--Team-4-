@@ -13,14 +13,17 @@ public class Database {
     private University uni;
     private HashMap<Integer, Student> Students;
     private HashMap<Integer, Employee> Employees; 
+    private HashMap<String, Building> Buildings;
     
     public Database()
     {
         uni = new University("University of Geeks");
         Students = new HashMap<Integer, Student>();
         Employees = new HashMap<Integer, Employee>();
+        Buildings = new HashMap<String, Building>();
         Employee temp = new Employee("Name", 0, 0);
         Employees.put(temp.getID(),temp);
+        
     }
     
     public University getUni()
@@ -36,6 +39,11 @@ public class Database {
     public HashMap getEmployees()
     {
         return Employees;
+    }
+    
+    public HashMap getBuildings()
+    {
+        return Buildings;
     }
     
     public Student getStudent( int sID)
@@ -60,6 +68,17 @@ public class Database {
         return null;
     }
     
+    public Building getBuilding(String name)
+    {
+        if(getBuildings().containsKey(name))
+        {
+            System.out.println("Building is found");
+            return (Building) getBuildings().get(name);
+        }
+        System.out.println("Building is not found");
+        return null;
+    }
+    
     public boolean studentExists( int sID)
     {
         return getStudents().containsKey(sID);
@@ -69,6 +88,13 @@ public class Database {
     {
         return getEmployees().containsKey(eID);
     }
+    
+    public boolean buildingExists(String name)
+    {
+        return getBuildings().containsKey(name);
+    }
+    
+    
     
     
             

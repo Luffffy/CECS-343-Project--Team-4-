@@ -29,6 +29,18 @@ public class Database_Control {
         return temp;
     }
     
+    public Building getBuilding(Database db, String building)
+    {
+        Building temp = db.getBuilding(building);
+        return temp;
+    }
+    
+    public Room getRoom(Database db, String building, String room)
+    {
+        Room temp = db.getBuilding(building).contains(room);
+        return temp;
+    }
+    
     public void addCollege(Database db, College c)
     {
         if(db.getUni().getCollegeList().size() < 10) {
@@ -76,6 +88,32 @@ public class Database_Control {
             System.out.println("Session has been added");
         } else {
             System.out.println("Course can't have more than 30 Sessions");
+        }
+    }
+    
+    public void addBuilding(Database db, Building building)
+    {
+        if(!db.getBuildings().containsKey(building.getName()))
+        {
+            System.out.println("Building added");
+            db.getBuildings().put(building.getName(), building);
+        }
+        else
+        {
+            System.out.println("Building already exists");
+        }
+    }
+    
+    public void addRoom(Database db, String building, Room room )
+    {
+        if(db.getBuildings().containsKey(building))
+        {
+            System.out.println("Room has been added to " + building);
+            db.getBuilding(building).getRoomList().add(room);
+        }
+        else
+        {
+            System.out.println("Building does not exist");
         }
     }
     
@@ -142,6 +180,32 @@ public class Database_Control {
         {
             db.getUni().contains(c).contains(d).contains(cc).contains(s).removeSession(db.getUni().contains(c).contains(d).contains(m).contains(cc).contains(s));
             System.out.println(s + " has been deleted");
+        }
+    }
+    
+    public void removeBuilding(Database db, String building)
+    {
+        if(db.getBuilding(building).isEmpty())
+        {
+            System.out.println(building + " Building has been removed");
+            db.getBuildings().remove(building);
+        }
+        else
+        {
+            System.out.println(building + " Building cannot be removed because it has rooms");
+        }
+    }
+    
+    public void removeRooms(Database db, String building, String room)
+    {
+        if(db.getBuilding(building).contains(room).isEmpty())
+        {
+            System.out.println("Room " + room + " has been removed from the " + building + " Building" );
+            db.getBuilding(building).removeRoom(db.getBuilding(building).contains(room));
+        }
+        else
+        {
+            System.out.println("Room " + room + " cannot be removed because it has sessions");
         }
     }
     

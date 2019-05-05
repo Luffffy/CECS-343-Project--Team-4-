@@ -12,6 +12,10 @@ public class Building {
         totalOccupancy = 0;
     }
     
+    public String getName()
+    {
+        return buildingName;
+    }
     public boolean isEmpty() {
         return rooms.isEmpty();
     }
