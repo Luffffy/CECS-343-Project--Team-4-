@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.*;
 public class Database_Control {
     
@@ -83,6 +84,14 @@ public class Database_Control {
     
     public void addSession(Database db, String college, String department, String major, String course, Session s)
     {
+        for(Session session: db.getUni().contains(college).contains(department).contains(major).contains(course).getSessionList())
+        {
+            if(timeConflict(session, s))
+            {
+                System.out.println("Session cannot be added because it has a time conflict with another existing session");
+                return;
+            }
+        }
         if(db.getUni().contains(college).contains(department).contains(major).contains(course).getSessionList().size() < 100) {
             db.getUni().contains(college).contains(department).contains(major).contains(course).addSession(s);
             System.out.println("Session has been added");
@@ -299,5 +308,34 @@ public class Database_Control {
         {
             System.out.println("This employee cannot be removed because they have sessions added");
         }
+    }
+    
+    public boolean timeConflict(Session a, Session b)
+    {
+        LocalTime aS = a.getStartTime();
+        LocalTime aE = a.getEndTime();
+        LocalTime bS = b.getStartTime();
+        LocalTime bE = b.getEndTime();
+        
+        if(a.getBuildingName().equals(b.getBuildingName()))
+        {
+            if(a.getRoomName().equals(b.getRoomName()))
+            {
+                if(a.getDay() == b.getDay())
+                {
+                    if(aS.isBefore(bS) && aE.isAfter(bS))
+                    {
+                        //System.out.println("Time conflict B starts between A");
+                        return true;
+                    }
+                    if(bS.isBefore(aS) && bE.isAfter(aS))
+                    {
+                       //System.out.println("Time conflict A starts between B");
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

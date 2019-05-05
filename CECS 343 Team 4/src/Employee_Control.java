@@ -22,6 +22,7 @@ public class Employee_Control {
         {
             if(timeConflict(temp.get(i), s))
             {
+                System.out.println("Cannot add session because it has a time conflict with another session");
                 canTeach = false;
             }
         }
@@ -39,17 +40,23 @@ public class Employee_Control {
         LocalTime bS = b.getStartTime();
         LocalTime bE = b.getEndTime();
         
-        if(a.getDay() == b.getDay())
+        if(a.getBuildingName().equals(b.getBuildingName()))
         {
-            if(aS.isBefore(bS) && aE.isAfter(bS))
+            if(a.getRoomName().equals(b.getRoomName()))
             {
-            System.out.println("Time conflict B starts between A");
-            return true;
-            }
-            if(bS.isBefore(aS) && bE.isAfter(aS))
-            {
-               System.out.println("Time conflict A starts between B");
-                return true;
+                if(a.getDay() == b.getDay())
+                {
+                    if(aS.isBefore(bS) && aE.isAfter(bS))
+                    {
+                        //System.out.println("Time conflict B starts between A");
+                        return true;
+                    }
+                    if(bS.isBefore(aS) && bE.isAfter(aS))
+                    {
+                       //System.out.println("Time conflict A starts between B");
+                        return true;
+                    }
+                }
             }
         }
         return false;
