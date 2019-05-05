@@ -30,6 +30,12 @@ public class Database_Control {
         return temp;
     }
     
+    public Session getSession(Database db, String c, String d, String m, String cc, String ss)
+    {
+        Session temp = db.getUni().contains(c).contains(d).contains(m).contains(cc).contains(ss);
+        return temp;
+    }
+    
     public Building getBuilding(Database db, String building)
     {
         Building temp = db.getBuilding(building);

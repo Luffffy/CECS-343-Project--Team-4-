@@ -86,7 +86,7 @@ public class Student {
         return totalUnits;
     }
     
-    public ArrayList takenCoursesList() {
+    public ArrayList getTakenCoursesList() {
         
         return takenCourses;
     }

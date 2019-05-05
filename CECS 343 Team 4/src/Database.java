@@ -98,15 +98,18 @@ public class Database {
     
     public void printIDs()
     {
-        for(Map.Entry s: Students.entrySet())
-        {
-            System.out.println("Key:" + s.getKey() + " Value " + ((Student)s.getValue()).toString());
-        }
         
         for(Map.Entry e: Employees.entrySet())
         {
-            System.out.println("Key:" + e.getKey() + " Value " + ((Employee)e.getValue()).toString());
+            System.out.println("Key:" + e.getKey() + " Value: " + ((Employee)e.getValue()).toString());
         }
+        
+        for(Map.Entry s: Students.entrySet())
+        {
+            System.out.println("Key:" + s.getKey() + " Value: " + ((Student)s.getValue()).toString());
+        }
+        
+        
     }
     
     public void initialize()

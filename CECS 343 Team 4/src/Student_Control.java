@@ -95,6 +95,23 @@ public class Student_Control {
         }
     }
     
+    public boolean tookPrereqs(Database db, Student student, Session session)
+    {
+        
+        int preReqCount = session.getCourse().getPrerequisiteCourseList().size();
+        int count = 0;
+        ArrayList<Pair> takenCourses = student.getTakenCoursesList();
+        for(Pair p: takenCourses)
+        {
+            if(session.getCourse().getPrerequisiteCourseList().contains(p.getCourse()))
+            {
+                count++;
+            }
+        }
+        return count == preReqCount;
+        
+    }
+    
     public boolean timeConflict(Session a, Session b)
     {
         LocalTime aS = a.getStartTime();
