@@ -17,8 +17,21 @@ public class CECS343Team4 {
     private static final int ADMIN_ID_LIMIT = 500000000;
     private static final int STUDENT_ID_LIMIT = 999999999;
 
-    private static int adminIDIncrement = 1;
-    private static int studentIDIncrement = 500000001;
+    private static int IDIncrement = 1;
+     // user input variables
+    private static String employeeName = "";
+    private static String collegeName = "";
+    private static String departmentName = "";
+    private static String majorName = "";
+    private static String courseName = "";
+    private static String studentName = "";
+    private static float employeeSalary = 0;
+    private static int employeeID = 0;
+    private static int deanID = 0;
+    private static int chairID = 0;
+    private static int optionSelect = 0;
+    private static int units = 0;
+    
 
     private static Database_Control dbc = new Database_Control();
     private static Database db = new Database();
@@ -75,7 +88,7 @@ public class CECS343Team4 {
                         System.out.println("Invalid password returning to main login");
                     }
 
-                } else if (loginput > 0 && loginput <= ADMIN_ID_LIMIT) {
+                } else if (true) {
                     System.out.println("Welcome admin");
 
                     //create admin menu
@@ -110,27 +123,15 @@ public class CECS343Team4 {
         Department department;
         Major major;
         Course course;
-        Employee emp;
-       // Student stu;
+        Employee employee;
+        Student student;
 
-       // user input variables
-        String employeeName = "";
-        String collegeName = "";
-        String departmentName = "";
-        String majorName = "";
-        String courseName = "";
-        String studentName = "";
-        float employeeSalary = 0;
-        int employeeID = 0;
-        int deanID = 0;
-        int chairID = 0;
-        int optionSelect = 0;
-        int units = 0;
+      
 
 
 
         do {
-            System.out.println("\nSuperUser Priviledges \n1. Add Employee \n2. Add College \n3. Add Department \n4. Add Major \n5. Add Courses \n6. Add Student \n7. Edit \n8. Delete \n9. Back");
+            System.out.println("\nSuperUser Priviledges \n1. Add Admin \n2. Add Employee \n3. Add College \n4. Add Department \n5. Add Major \n6. Add Courses \n7. Add Student \n8. Edit \n9. Delete \n10. Back");
 
             try {
 
@@ -138,41 +139,38 @@ public class CECS343Team4 {
 
                 switch (optionSelect) {
                     case 1:
+                        sc1.nextLine();
                     //for setting an Admin
-                        Database_Control dbc = new Database_Control();
+                        //Database_Control dbc = new Database_Control();
                         System.out.println("Enter the ID of the Employee you want to assign as Admin");
                         int id = sc1.nextInt();
-                        dbc.getEmployee(db, id).setAdmin(true);
+                        
+                        dbc.setAdmin(db, id, true);
+                        
+                        break;
 
-
-
+                    case 2:
                         //for adding an Employee
                         sc1.nextLine();
                         System.out.println("Enter the employees name");
                         employeeName = sc1.nextLine();
 
-                        System.out.println("Enter the employees ID");
-                        employeeID = sc1.nextInt();
-
-
                         System.out.println("Enter in the employees salary");
                         employeeSalary = sc1.nextFloat();
 
-                        emp = new Employee(employeeName,employeeID,employeeSalary);
-
-                        /*
-                        Logic to put into database
-                        */
-
-
+                        employee = new Employee(employeeName,IDIncrement,employeeSalary);
+                        
+                        dbc.addEmployee(db, employee);
+                        IDIncrement++;
+                        
                         break;
-
-                    case 2:
+                        
+                    case 3:
                         sc1.nextLine();
-                        System.out.println("Enter college name");
-
+                        
                         //character limit checking for college name
                         do {
+                            System.out.println("Enter college name");
                             collegeName = sc1.nextLine();
                             if (collegeName.length() > 60) {
                                 System.out.println("Too many characters in college name");
@@ -182,6 +180,11 @@ public class CECS343Team4 {
 
                         System.out.println("Enter deanID for this college");
                         deanID = sc1.nextInt();
+                        
+                        /*
+                        There is no way to check for employees
+                        */
+                        
 
                         /*
                          Important Note: There isn't any check for duplicates. Tested insertion and it
@@ -192,19 +195,9 @@ public class CECS343Team4 {
                         college = new College(collegeName, deanID);
                         dbc.addCollege(db, college);
 
-                        /*
-                    if(){
-
-                         System.out.println("College is being added.");
-                        dbc.addCollege(db, college);
-                    }
-                    else{
-                        System.out.println("College already exists.");
-                    }
-                         */
                         break;
 
-                    case 3:
+                    case 4:
                         /*
                     First check if there are any colleges to add a department to
                     Yes : display list of options to add a department to
@@ -213,9 +206,13 @@ public class CECS343Team4 {
                         sc1.nextLine();
 
                         System.out.println("What college would you like to add a department to?");
-                        //dbc.getCollege(db, sc1.nextLine());
                         collegeName = sc1.nextLine();
-
+                        
+                        // check if college exists before moving forward
+                        if(dbc.getCollege(db, collegeName)== null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
 
                         //character limit check
                         do {
@@ -232,47 +229,35 @@ public class CECS343Team4 {
 
                         chairID = sc1.nextInt();
                         department = new Department(departmentName,chairID);
-
-                        //Insert department into specific college in database
-                            /*
-                            Important Note: When executing the dbc.addDepartment an exception is thrown if the college object doesn't exist
-                            */
-                        try {
-                            dbc.addDepartment(db, collegeName, department);
-                        } catch (Exception e) {
-                            System.out.println("College doesn't exist");
-                        }
-
-
-
-                            /*if (chairID < 0 || chairID > ADMIN_ID_LIMIT) {
-                                System.out.println("Invalid ID");
-                            }
-
-                        } while (chairID < 0 || chairID > ADMIN_ID_LIMIT);
-                            */
-                        //check for insertion limit
-                        /*
-                    Important note: may have to check if the same ids can span multiple heirarchy - adminID = departmentID = chairID.
-                         */
-
-                        // college.addDepartment(department);
-                        //department = new Department("Comp", 000000111);
-                        //college.addDepartment(department);
+                        dbc.addDepartment(db, collegeName, department);
+                        System.out.println("Department has been added");
+                       
                         break;
 
-                    case 4:
+                    case 5:
                         sc1.nextLine();
 
                         System.out.println("\nWhat college would you like to add a major to?");
                         collegeName = sc1.nextLine();
-                        System.out.println("\nWhat college would you like to add a major to?");
+                        
+                        //check if college exists before moving forward
+                          if(dbc.getCollege(db, collegeName) == null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
+                          
+                        System.out.println("\nWhat department would you like to add a major to?");
                         departmentName = sc1.nextLine();
-
+                        
+                        //check if the department exists before moving forward
+                        if(dbc.getDepartment(db, collegeName, departmentName) == null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
 
                         //character limit check
                         do {
-                            System.out.println("Enter the major name");
+                            System.out.println("\nEnter the major name");
 
                             majorName = sc1.nextLine();
                             if (majorName.length() > 60) {
@@ -281,74 +266,93 @@ public class CECS343Team4 {
                         } while (majorName.length() > 60);
 
                         major = new Major(majorName);
-
-                        //Insert major into specific department
-                        /*
-                          Important Note: Throws an exception if the objects don't exist
-                        */
-                        try{
-                            dbc.addMajor(db, collegeName, departmentName, major);
-                        }catch(Exception e){
-                            System.out.println("College or department doesn't exist");
-                        }
+                        dbc.addMajor(db, collegeName, departmentName, major);
 
                         break;
 
-                    case 5:
+                    case 6:
+                        
                         sc1.nextLine();
+                        
                         System.out.println("\nWhat college would you like to add a course to?");
                         collegeName = sc1.nextLine();
+                        
+                        // checking if college exists before going any further
+                        if(dbc.getCollege(db, collegeName)==null){
+                            System.out.println("College doesn't exist.");
+                            break;
+                        }
+                        
                         System.out.println("\nWhat department would you like to add a course to?");
                         departmentName = sc1.nextLine();
+                        
+                        //checking if department exists before going any further
+                            if(dbc.getDepartment(db, collegeName, departmentName)==null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
+                        
+                        
                         System.out.println("\nWhat major would you like to add a course to?");
                         majorName = sc1.nextLine();
 
+                        //check if major exists before going any further
+                        if(dbc.getMajor(db, collegeName, departmentName, majorName)==null){
+                            System.out.println("Major doesn't exist");
+                            break;
+                        }
+                        
                         //character limit check
                         do {
-                            System.out.println("Enter course name");
+                            System.out.println("\nEnter course name");
 
                             courseName = sc1.nextLine();
                             if (courseName.length() > 60) {
                                 System.out.println("Too many characters for department name");
                             }
                         } while (courseName.length() > 60);
-                        // total of 100 courses per major
+                        
 
                         // enter units for course
-
-                        //Still working out error checking for entering units
-                        units = sc1.nextInt();
-
+                        do{
+                            System.out.println("\nEnter the units for this course.");
+                            try{
+                                units = sc1.nextInt();
+                            }
+                            catch(Exception e){
+                                System.out.println("Invalid Input");
+                                sc1.nextLine();
+                            }
+                            } while(units < 1);
 
                         course = new Course(courseName,units);
+                        dbc.addCourse(db, collegeName, departmentName, majorName, course);
 
                         break;
 
-                    case 6:
-                        /*
-                    Prompt for student name. ID is automatically assigned by increment variable
-                    Insert student object into database via database control object.
-                         */
+                    case 7:
+                       
                         sc1.nextLine();
                         System.out.println("Enter student name");
 
                         studentName = sc1.nextLine();
-
-                        //stu = new Student(studentName, studentIDIncrement);
-                        studentIDIncrement++;
-                        // currently there is no method in the database control class to insert a student into the database
-
+                       
+                        student = new Student(studentName, IDIncrement);
+                        dbc.addStudent(db, student);
+                        IDIncrement++;
+                        
                         break;
-                    case 7:
-                        System.out.println("What would you like to edit");
-                        edit_Menu();
-                        break;
+                        
                     case 8:
+                        System.out.println("What would you like to edit");
+                        //edit_Menu();
+                        break;
+                    case 9:
                         System.out.println("What would you like to delete");
-                       // delete_Menu();
+                        delete_Menu();
                         break;
 
-                    case 9:
+                    case 10:
                         System.out.println("Going back to login.");
                         sc1.nextLine();
                         return;
@@ -361,7 +365,7 @@ public class CECS343Team4 {
                 sc1.nextLine();
             }
 
-        } while (optionSelect != 9);
+        } while (optionSelect != 10);
  }
 
 /*
@@ -452,7 +456,7 @@ public class CECS343Team4 {
     }
 
 
-    public static void edit_Menu(){
+    public static void delete_Menu(){
        sc1.nextLine();
         int input = 0;
 
@@ -465,20 +469,131 @@ public class CECS343Team4 {
                 input = sc1.nextInt();
                 switch (input) {
                     case 1:
+                        sc1.nextLine();
                         //College
+                        System.out.println("Enter in the college you wish to delete");
+                        collegeName = sc1.nextLine();
+                        dbc.removeCollege(db, collegeName);
                         break;
 
                     case 2:
+                        sc1.nextLine();
                         //Department
+                        System.out.println("Enter in the college you want to delete a department from");
+                        collegeName = sc1.nextLine();
+                        
+                        // check if college exists
+                        if(dbc.getCollege(db, collegeName)==null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the department you wish to delete");
+                        departmentName = sc1.nextLine();
+                        
+                        dbc.removeDepartment(db, collegeName, majorName);
                         break;
                     case 3:
+                        sc1.nextLine();
                         //Major
+                        System.out.println("Enter in the college to delete a major from");
+                        collegeName = sc1.nextLine();
+                        
+                        //check if college exists
+                        if(dbc.getCollege(db, collegeName)==null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the department to delete a major from");
+                        departmentName = sc1.nextLine();
+                        
+                        //check if department exists
+                        if(dbc.getDepartment(db, collegeName, departmentName)==null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the major you wish to delete");
+                        majorName = sc1.nextLine();
+                        dbc.removeMajor(db, collegeName, departmentName, majorName);
                         break;
+                        
                     case 4:
+                        sc1.nextLine();
                         //Courses
+                        System.out.println("Enter in the college to delete a course from");
+                        collegeName = sc1.nextLine();
+                        
+                        //check if college exists
+                        if(dbc.getCollege(db, collegeName)==null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the department to delete a course from");
+                        departmentName = sc1.nextLine();
+                        
+                        //check if department exists
+                        if(dbc.getDepartment(db, collegeName, departmentName)==null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the major to delete a course from");
+                        majorName = sc1.nextLine();
+                        
+                        //check if major exists
+                        if(dbc.getMajor(db, collegeName, departmentName, majorName)==null){
+                            System.out.println("Major doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the course you wish to delete");
+                        courseName = sc1.nextLine();
+                        
+                        dbc.removeCourse(db, collegeName, departmentName, majorName, courseName);
                         break;
                     case 5:
+                        sc1.nextLine();
                         //Session
+                        System.out.println("Enter in the college to delete a session from");
+                        collegeName = sc1.nextLine();
+                        
+                        //check if college exists
+                        if(dbc.getCollege(db, collegeName)==null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the department to delete a session from");
+                        departmentName = sc1.nextLine();
+                        
+                        //check if department exists
+                        if(dbc.getDepartment(db, collegeName, departmentName)==null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the major to delete a session from");
+                        majorName = sc1.nextLine();
+                        
+                        //check if major exists
+                        if(dbc.getMajor(db, collegeName, departmentName, majorName)==null){
+                            System.out.println("Major doesn't exist");
+                            break;
+                        }
+                        
+                        System.out.println("Enter in the course to delete a session from");
+                        courseName = sc1.nextLine();
+                        
+                        //check if course exists
+                        if(dbc.getCourse(db, collegeName, departmentName, majorName, courseName)==null){
+                            System.out.println("Course doesn't exist");
+                            break;
+                        }
+                        
+                        
                         break;
                     case 6:
                         //Building
