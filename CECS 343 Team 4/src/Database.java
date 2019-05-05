@@ -96,6 +96,19 @@ public class Database {
         return getBuildings().containsKey(name);
     }
     
+    public void printIDs()
+    {
+        for(Map.Entry s: Students.entrySet())
+        {
+            System.out.println("Key:" + s.getKey() + " Value " + ((Student)s.getValue()).toString());
+        }
+        
+        for(Map.Entry e: Employees.entrySet())
+        {
+            System.out.println("Key:" + e.getKey() + " Value " + ((Employee)e.getValue()).toString());
+        }
+    }
+    
     public void initialize()
     {
         Database_Control dbc = new Database_Control();
@@ -104,15 +117,15 @@ public class Database {
         
         //adding an employee
         System.out.println("Adding an Employee");
-        Employee tempe1 = new Employee("EmployeeName", 0, 0);
+        Employee tempe1 = new Employee("EmployeeName", 1, 0);
         dbc.addEmployee(this, tempe1);
         System.out.println();
         
         //adding an employee and making them an admin
         System.out.println("adding an employee and making them an admin");
-        Employee tempe2 = new Employee("AdminName", 1, 0);
+        Employee tempe2 = new Employee("AdminName", 2, 0);
         dbc.addEmployee(this, tempe2);       
-        dbc.setAdmin(this, 1, true);
+        dbc.setAdmin(this, 2, true);
         System.out.println();
         
         //adding a student
@@ -123,13 +136,13 @@ public class Database {
         
         //adding a college
         System.out.println("adding a college");
-        College tempc = new College("CollegeName", 0);
+        College tempc = new College("CollegeName", 1);
         dbc.addCollege(this, tempc);
         System.out.println();
         
         //adding a department
         System.out.println("adding a department");
-        Department tempd = new Department("DepartmentName", 1);
+        Department tempd = new Department("DepartmentName", 2);
         dbc.addDepartment(this, "CollegeName", tempd);
         System.out.println();
         

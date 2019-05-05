@@ -313,6 +313,21 @@ public class Database_Control {
         }
     }
     
+    public boolean studentExists(Database db, int sID)
+    {
+        return db.studentExists(sID);
+    }
+    
+    public boolean employeeExists(Database db, int eID)
+    {
+        return db.employeeExists(eID);
+    }
+    
+    public void printIDs(Database db)
+    {
+        db.printIDs();
+    }
+    
     public boolean timeConflict(Session a, Session b)
     {
         LocalTime aS = a.getStartTime();

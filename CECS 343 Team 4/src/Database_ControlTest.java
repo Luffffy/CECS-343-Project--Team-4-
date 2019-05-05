@@ -25,6 +25,7 @@ public class Database_ControlTest {
         dbc.setAdmin(db, right, true);
         dbc.setAdmin(db, wrong, true);
         
+        dbc.printIDs(db);
         
         
     }

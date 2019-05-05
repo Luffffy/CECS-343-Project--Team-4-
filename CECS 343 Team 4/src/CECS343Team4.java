@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class CECS343Team4 {
 
     private static Scanner sc1 = new Scanner(System.in);
-    private static int IDIncrement = 1;
+    private static int IDIncrement = 4;
      // user input variables
     private static String employeeName = "";
     private static String collegeName = "";
@@ -53,7 +53,8 @@ public class CECS343Team4 {
         //String formatID = "";
 
        // ArrayList<Integer> adminIDs = new ArrayList<>();
-
+       
+       dbc.printIDs(db);
 
         do {
 
@@ -84,13 +85,13 @@ public class CECS343Team4 {
                         System.out.println("Invalid password returning to main login");
                     }
 
-                } else if (dbc.getEmployee(db, loginput).getAdmin()) {
+                } else if (dbc.employeeExists(db, loginput) && dbc.getEmployee(db, loginput).getAdmin()) {
                     System.out.println("Welcome admin");
 
                     //create admin menu
                     //adminMenuDisplay();
 
-                } else if (dbc.getStudent(db, loginput) == null) {
+                } else if (dbc.studentExists(db, loginput)) {
                     System.out.println("Welcome student");
 
                     // create student menu
@@ -100,7 +101,7 @@ public class CECS343Team4 {
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input\n");
-                sc.next();
+                //sc.next();
 
             }
         } while (loginput >= 0);
