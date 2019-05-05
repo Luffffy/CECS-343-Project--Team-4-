@@ -201,5 +201,39 @@ public class Database_Control {
         }
     }
     
+    public Student getStudent(Database db, int sID)
+    {
+        return db.getStudent(sID);
+    }
     
+    public Employee getEmployee(Database db, int eID)
+    {
+        return db.getEmployee(eID);
+    }
+    
+    public void removeStudent(Database db, int sID)
+    {
+        if(db.getStudent(sID).isEmpty())
+        {
+            System.out.println(db.getStudent(sID).toString() + " has been removed");
+            db.getStudents().remove(sID);
+        }
+        else
+        {
+            System.out.println("This student cannot be removed because they have sessions added");
+        }
+    }
+    
+    public void removeEmployee(Database db, int eID)
+    {
+        if(db.getEmployee(eID).isEmpty())
+        {
+            System.out.println(db.getEmployee(eID).toString() + " has been removed");
+            db.getEmployees().remove(eID);
+        }
+        else
+        {
+            System.out.println("This employee cannot be removed because they have sessions added");
+        }
+    }
 }

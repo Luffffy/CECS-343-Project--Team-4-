@@ -106,4 +106,14 @@ public class Student {
             System.out.print(sessions.get(i).getCourse().getCourseName() + " | ");
         }
     }
+    
+    public boolean isEmpty()
+    {
+        return sessions.isEmpty();
+    }
+    
+    public String toString()
+    {
+        return "Name: " + studentName + " ID: " + studentID;
+    }
 }

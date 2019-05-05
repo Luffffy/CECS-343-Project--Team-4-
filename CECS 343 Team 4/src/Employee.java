@@ -117,4 +117,8 @@ public class Employee {
         isAdmin = value;
     }
     
+    public boolean isEmpty()
+    {
+        return sessionsTeaching.isEmpty();
+    }
 }
