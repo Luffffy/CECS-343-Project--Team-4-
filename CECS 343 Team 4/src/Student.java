@@ -16,9 +16,6 @@ public class Student {
     ArrayList<Pair> takenCourses = new ArrayList();
     ArrayList<Session> sessions = new ArrayList();
        
-    public Student () {
-        
-    }
     public Student (String studentName, int studentID) {
         this.studentName = studentName;
         this.studentID = studentID;
@@ -47,8 +44,11 @@ public class Student {
         return paidTuition;
     }
 
-    public void addTakenCourse(Course c, char g) { //use this to assign grades, all courses taken should have grades
+    public void addTakenCourse(Session s, char g) { //use this to assign grades, all courses taken should have grades 
+        
+        Course c = s.getCourse();
         takenCourses.add(new Pair(c, g));
+        removeSession(s);
     }
     
     public void removeTakenCourse(Course c) {
@@ -72,14 +72,15 @@ public class Student {
         totalUnits += c.getCourse().getCourseUnits();
     }    
     
-    public void removeSession(Session s) {
+    public void removeSession(Session s) {    
         sessions.remove(s);
-        totalUnits -= s.getCourse().getCourseUnits();
     }
     
     public ArrayList getSessionList() {
         return sessions;
     }
+    
+
     
     public int studentTotalUnits() {
         return totalUnits;

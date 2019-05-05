@@ -14,6 +14,7 @@ public class Database_ControlTest {
     {
      
         Database db = new Database();
+        System.out.println("\n \nMenu");
         Database_Control dbc = new Database_Control();
         Employee e = new Employee( "Bob", 123456, 1000);
         dbc.addEmployee(db, e);

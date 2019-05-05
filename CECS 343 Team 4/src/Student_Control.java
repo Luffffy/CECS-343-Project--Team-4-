@@ -13,29 +13,74 @@ import java.time.LocalTime;
  */
 public class Student_Control {
       
-    public void addSession(Database db, Student student, Session session)
+    public void addSession(Database db, int sID, Session session)
     {
+        Student student = db.getStudent(sID);
         if(checkTuition(student))
         {
-            ArrayList<Session> temp = student.getSessionList();
-            boolean conflict = false;
-            for(Session s: temp)
+            if(student.studentTotalUnits() <= 20 && (student.studentTotalUnits() + session.getUnits()) <= 20)
             {
-                if(timeConflict(s, session))
+                ArrayList<Session> temp = student.getSessionList();
+                boolean conflict = false;
+                for(Session s: temp)
                 {
-                    System.out.println("Cannot add session because it has a time conflict with another session");
-                    conflict = true;
+                    if(timeConflict(s, session))
+                    {
+                        System.out.println("Cannot add session because it has a time conflict with another session");
+                        conflict = true;
+                    }
+                }
+            
+                if(!conflict)
+                {
+                    student.addSession(session);
+                    System.out.println("Session has been added to the Student's schedule");
                 }
             }
-            
-            if(!conflict)
+            else
             {
-                student.addSession(session);
-                System.out.println("Session has been added");
+                System.out.println("Student cannot go over 20 units total");
             }
-            
         }
     }
+    
+    public void removeSession(Database db, int sID, String s)
+    {
+        Student student = db.getStudent(sID);
+        boolean canRemove = false;
+        if(!student.getSessionList().isEmpty())
+        {
+            ArrayList<Session> temp = student.getSessionList();
+            Session temps = null;
+            for(Session session: temp)
+            {
+                if(session.getSessionNumber().equals(s));
+                {
+                  temps = session;
+                  canRemove = true;  
+                }
+            }
+            if(canRemove)
+            {
+                db.getStudent(sID).removeSession(temps);
+                System.out.println("Session has been removed from the Student's schedule");
+            }
+            else
+            {
+                System.out.println("The session is not in the Student's schedule");
+            }
+        }
+        else
+        {
+            System.out.println("There are no sessions to be removed");
+        }
+    }
+    public void changeMajor(Database db, int sID, String m)
+    {
+        db.getStudent(sID).changeMajor(m);
+        System.out.println("Student has changed their major to " + m);
+    }
+    
     public boolean checkTuition(Student s)
     {
         if(s.getPaid())

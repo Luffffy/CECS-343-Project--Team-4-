@@ -7,9 +7,7 @@ public class Course {
     private ArrayList<Course> preReq = new ArrayList();
     private ArrayList <Session> sessions = new ArrayList();
     
-    public Course() {
-        
-    }
+
     public Course(String courseName, int units) {
         this.courseName = courseName;
         courseUnits = units;

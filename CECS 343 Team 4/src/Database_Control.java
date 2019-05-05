@@ -46,7 +46,7 @@ public class Database_Control {
     {
         if(db.getUni().getCollegeList().size() < 10) {
             db.getUni().addCollege(c);
-            System.out.println("College has been added");
+            System.out.println("College has been added to the Database");
         } else {
             System.out.println("University can't have more than 10 Colleges");
         }
@@ -56,7 +56,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(college).getDepartmentList().size() < 30) {
             db.getUni().contains(college).addDepartment(d);
-            System.out.println("Department has been added");
+            System.out.println("Department has been added to the Database");
         } else {
             System.out.println("College can't have more than 30 Departments");
         }
@@ -66,7 +66,7 @@ public class Database_Control {
     {
        if(db.getUni().contains(college).contains(department).getMajorList().size() < 50) {
             db.getUni().contains(college).contains(department).addMajor(m);
-            System.out.println("Major has been added");
+            System.out.println("Major has been added to the Database");
         } else {
             System.out.println("Department can't have more than 50 majors");
         }
@@ -76,7 +76,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(college).contains(department).contains(major).getCourseList().size() < 100) {
             db.getUni().contains(college).contains(department).contains(major).addCourse(c);
-            System.out.println("Course has been added");
+            System.out.println("Course has been added to the Database");
         } else {
             System.out.println("Major can't have more than 100 courses");
         }
@@ -84,17 +84,20 @@ public class Database_Control {
     
     public void addSession(Database db, String college, String department, String major, String course, Session s)
     {
-        for(Session session: db.getUni().contains(college).contains(department).contains(major).contains(course).getSessionList())
+        if(!db.getUni().contains(college).contains(department).contains(major).contains(course).getSessionList().isEmpty())
         {
-            if(timeConflict(session, s))
+            for(Session session: db.getUni().contains(college).contains(department).contains(major).contains(course).getSessionList())
             {
-                System.out.println("Session cannot be added because it has a time conflict with another existing session");
-                return;
+                if(timeConflict(session, s))
+                {
+                    System.out.println("Session cannot be added because it has a time conflict with another existing session");
+                    return;
+                }
             }
         }
         if(db.getUni().contains(college).contains(department).contains(major).contains(course).getSessionList().size() < 100) {
             db.getUni().contains(college).contains(department).contains(major).contains(course).addSession(s);
-            System.out.println("Session has been added");
+            System.out.println("Session has been added to the Database");
         } else {
             System.out.println("Course can't have more than 30 Sessions");
         }
@@ -104,7 +107,7 @@ public class Database_Control {
     {
         if(!db.getBuildings().containsKey(building.getName()))
         {
-            System.out.println("Building added");
+            System.out.println("Building added to the Database");
             db.getBuildings().put(building.getName(), building);
         }
         else
@@ -136,7 +139,7 @@ public class Database_Control {
         else
         {
             db.getUni().removeCollege(db.getUni().contains(c));
-            System.out.println(c + " has been deleted");
+            System.out.println(c + " has been deleted from the database");
         }
     }
     
@@ -149,7 +152,7 @@ public class Database_Control {
         else
         {
             db.getUni().contains(c).removeDepartment(db.getUni().contains(c).contains(d));
-            System.out.println(d + " has been deleted");
+            System.out.println(d + " has been deleted from the database");
         }
     }
     
@@ -162,7 +165,7 @@ public class Database_Control {
         else
         {
             db.getUni().contains(c).contains(d).removeMajor(db.getUni().contains(c).contains(d).contains(m));
-            System.out.println(m + " has been deleted");
+            System.out.println(m + " has been deleted from the database");
         }
     }
     
@@ -175,7 +178,7 @@ public class Database_Control {
         else
         {
             db.getUni().contains(c).contains(d).contains(cc).removeCourse(db.getUni().contains(c).contains(d).contains(m).contains(cc));
-            System.out.println(cc + " has been deleted");
+            System.out.println(cc + " has been deleted from the database");
         }
     }
     
@@ -196,7 +199,7 @@ public class Database_Control {
     {
         if(db.getBuilding(building).isEmpty())
         {
-            System.out.println(building + " Building has been removed");
+            System.out.println(building + " Building has been removed from the Database");
             db.getBuildings().remove(building);
         }
         else
@@ -220,11 +223,11 @@ public class Database_Control {
     
     public void addStudent(Database db, Student s)
     {        
-        System.out.println("Student id: " + s.getStudentID());
-        if(!db.employeeExists(s.getStudentID()))
+        //System.out.println("Student id: " + s.getStudentID());
+        if(!db.studentExists(s.getStudentID()))
         {
-            System.out.println("Student added");
-            db.getEmployees().put(s.getStudentID(), s);
+            System.out.println("Student added to the Database");
+            db.getStudents().put(s.getStudentID(), s);
         }
         else
         {
@@ -234,10 +237,10 @@ public class Database_Control {
     
     public void addEmployee(Database db, Employee e)
     {
-        System.out.println("employee id: " + e.getID());
+        //System.out.println("employee id: " + e.getID());
         if(!db.employeeExists(e.getID()))
         {
-            System.out.println("Employee added");
+            System.out.println("Employee added to the Database");
             db.getEmployees().put(e.getID(), e);
         }
         else
@@ -288,7 +291,7 @@ public class Database_Control {
     {
         if(db.getStudent(sID).isEmpty())
         {
-            System.out.println(db.getStudent(sID).toString() + " has been removed");
+            System.out.println(db.getStudent(sID).toString() + " has been removed from the database");
             db.getStudents().remove(sID);
         }
         else
@@ -301,7 +304,7 @@ public class Database_Control {
     {
         if(db.getEmployee(eID).isEmpty())
         {
-            System.out.println(db.getEmployee(eID).toString() + " has been removed");
+            System.out.println(db.getEmployee(eID).toString() + " has been removed from the database");
             db.getEmployees().remove(eID);
         }
         else
@@ -323,6 +326,12 @@ public class Database_Control {
             {
                 if(a.getDay() == b.getDay())
                 {
+                    
+                    if(aS.equals(bS) && aE.equals(bE))
+                    {
+                        //System.out.println("Time Conflict A and B start and end at the same Time");
+                        return true;
+                    }
                     if(aS.isBefore(bS) && aE.isAfter(bS))
                     {
                         //System.out.println("Time conflict B starts between A");

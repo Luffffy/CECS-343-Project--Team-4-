@@ -27,14 +27,14 @@ public class Session {
     private ArrayList <Student> students = new ArrayList();
     //arraylists of students if this is empty then we can remove
    
-    public Session(String sessionNumber, int profID, int day, boolean semester, int units, Building building, 
+    public Session(String sessionNumber, int profID, int day, boolean semester, Building building, 
             Room room, LocalTime startTime, LocalTime endTime, Course course)
     {
         this.sessionNumber = sessionNumber;
         this.profID = profID;
         this.day = day;
         this.semester = semester;
-        this.units = units;
+        this.units = course.getCourseUnits();
         this.building = building;
         this.room = room;
         this.startTime = startTime;
@@ -61,6 +61,12 @@ public class Session {
     {
         return room;
     }
+    
+    public int getUnits()
+    {
+        return units;
+    }
+    
     public LocalTime getStartTime()
     {
         return startTime;
