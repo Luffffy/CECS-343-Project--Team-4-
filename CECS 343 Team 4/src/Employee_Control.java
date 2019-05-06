@@ -14,22 +14,36 @@ import java.util.ArrayList;
  */
 public class Employee_Control {
     
-    public void checkClassConflict(Employee e, Session s)
+    //Session temp = new Session( "tempName", -1, day, semester, building, room, startTime, endTIme, course);
+    //if(!ec.checkClassConflict(e, temp))
+    //{
+    //    Session add = new Session ( "real Name" , profID, day, semester, building, room, startTime, endTIme, course);
+    //    dbc.addSession(db, ....., add);
+    //{
+    //else
+    //{
+    //      System.out.println("Cannot add this session because it conflicts with the profs teaching schedule");
+    //}
+    
+    public boolean checkClassConflict(Employee e, Session s)
     {
-        boolean canTeach = true;
+        //boolean canTeach = true;
         ArrayList<Session> temp = e.getSessionList();
         for(int i = 0; i < temp.size(); i++)
         {
             if(timeConflict(temp.get(i), s))
             {
                 System.out.println("Cannot add session because it has a time conflict with another session");
-                canTeach = false;
+                return true; //canTeach = false;
             }
         }
+        return false;
+        /*
         if(canTeach){
             e.addSession(s);
             System.out.println("Session has been added");
         }
+*/
         
         
     }
