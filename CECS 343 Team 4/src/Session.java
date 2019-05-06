@@ -161,6 +161,7 @@ public class Session {
     }
     
     public boolean getSemester() {
+        
         return semester;
     }
     

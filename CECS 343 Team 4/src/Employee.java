@@ -120,7 +120,7 @@ public class Employee {
         } else {
             String s = "";
             for(Session session: sessionsTeaching){
-                s += session.getSessionNumber() + " " + session.getSemester() 
+                s += session.getSessionNumber() + " " + session.getSemesterString() 
                         + " " + session.getDayName() + " " + session.getStartTime() + " - " + session.getEndTime() + "\n";
             }
             return s;

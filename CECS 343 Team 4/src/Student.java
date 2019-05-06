@@ -125,7 +125,7 @@ public class Student {
         } else {
             String s = "";
             for(Session session: sessions){
-                s += session.getSessionNumber() + " " + session.getSemester() 
+                s += session.getSessionNumber() + " " + session.getSemesterString() 
                         + " " + session.getDayName() + " " + session.getStartTime() + " - " + session.getEndTime() + "\n";
             }
             return s;
