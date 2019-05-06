@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.ArrayList;
 import static java.util.Collections.list;
-
+import java.time.*;
 /**
  *
  * @author
@@ -117,5 +117,18 @@ public class Student {
     public String toString()
     {
         return "Name: " + studentName + " ID: " + studentID;
+    }
+    
+    public String getSessions() {
+        if(sessions.isEmpty()) {
+            return "No Sessions";
+        } else {
+            String s = "";
+            for(Session session: sessions){
+                s += session.getSessionNumber() + " " + session.getSemester() 
+                        + " " + session.getDayName() + " " + session.getStartTime() + " - " + session.getEndTime() + "\n";
+            }
+            return s;
+        }
     }
 }

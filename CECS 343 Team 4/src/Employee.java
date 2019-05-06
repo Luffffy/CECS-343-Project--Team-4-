@@ -1,6 +1,7 @@
 import java.util.*;
 import java.util.ArrayList;
 import static java.util.Collections.list;
+import java.time.*;
 
 public class Employee {
     private String Name;
@@ -120,5 +121,18 @@ public class Employee {
     public boolean isEmpty()
     {
         return sessionsTeaching.isEmpty();
+    }
+    
+    public String getSessions() {
+        if(sessionsTeaching.isEmpty()) {
+            return "No Sessions";
+        } else {
+            String s = "";
+            for(Session session: sessionsTeaching){
+                s += session.getSessionNumber() + " " + session.getSemester() 
+                        + " " + session.getDayName() + " " + session.getStartTime() + " - " + session.getEndTime() + "\n";
+            }
+            return s;
+        }
     }
 }

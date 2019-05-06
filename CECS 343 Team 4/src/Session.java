@@ -184,6 +184,13 @@ public class Session {
         return students;
     }
     
+    public String getSemesterString() {
+        if(semester) {
+            return "Spring";
+        } else {
+            return "Fall";
+        }
+    }
     
 }
 

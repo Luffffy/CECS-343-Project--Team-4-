@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.time.*;
 
 public class Course {
     private String courseName;
@@ -68,5 +69,18 @@ public class Course {
             }
         }
         return temp;
+    }
+    
+    public String getSessions() {
+        if(sessions.isEmpty()) {
+            return "No Sessions";
+        } else {
+            String s = "";
+            for(Session session: sessions){
+                s += session.getSessionNumber() + " " + session.getSemester() 
+                        + " " + session.getDayName() + " " + session.getStartTime() + " - " + session.getEndTime() + "\n";
+            }
+            return s;
+        }
     }
 }
