@@ -435,7 +435,7 @@ public class CECS343Team4 {
                         
                         //List all of the employees
                         /****************/
-                        
+                      
                         System.out.println("Enter in the professor id");
                         id = sc1.nextInt();
                         
@@ -1371,6 +1371,12 @@ public class CECS343Team4 {
                         System.out.println("Enter in the college you wish to edit");
                         collegeName = sc1.nextLine();
                         
+                        //check if college exists
+                        if(dbc.getCollege(db, collegeName) == null){
+                            System.out.println("The college doesn't exist");
+                            break;
+                        }
+                        
                         System.out.println("Would you like to change the college name? y or n");
                       
                         if(sc1.nextLine().compareToIgnoreCase("y")==0){
@@ -1409,6 +1415,12 @@ public class CECS343Team4 {
                         
                         System.out.println("Enter in the department you wish to edit");
                         departmentName = sc1.nextLine();
+                        
+                        //check if department exists
+                        if(dbc.getDepartment(db, collegeName, departmentName) == null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
                         
                         System.out.println("Would you like to change the department name? y or n");
                       
@@ -1461,6 +1473,12 @@ public class CECS343Team4 {
                         System.out.println("Enter in the major you wish to edit");
                         majorName = sc1.nextLine();
                         
+                        //check if major exists
+                        if(dbc.getMajor(db, collegeName, departmentName, majorName) == null){
+                            System.out.println("Major doesn't exist");
+                            break;
+                        }
+                        
                         System.out.println("Change the major name to ");
                         dbc.getMajor(db, collegeName, departmentName,majorName).setMajorName(sc1.nextLine());
                         
@@ -1512,6 +1530,12 @@ public class CECS343Team4 {
                         
                         System.out.println("Enter in the course you wish to edit");
                         courseName = sc1.nextLine();
+                        
+                        //check if course exists
+                        if(dbc.getCourse(db, collegeName, departmentName, majorName, courseName) == null){
+                            System.out.println("Course doesn't exist");
+                            break;
+                        }
                         
                         System.out.println("Would you like to change the course name? y or n");
                       
@@ -1588,6 +1612,12 @@ public class CECS343Team4 {
                         System.out.println("Enter in the session number to edit the session");
                         sessionNumber = sc1.nextLine();
                         
+                        //check if session exists
+                        if(dbc.getSession(db, collegeName, departmentName, majorName, courseName, sessionNumber) == null){
+                            System.out.println("Session doesn't exist");
+                            break;
+                        }
+                        
                         
                         System.out.println("Do you wish to edit the session day? y or n");
                         if(sc1.nextLine().compareToIgnoreCase("y")==0){
@@ -1652,6 +1682,7 @@ public class CECS343Team4 {
                         System.out.println("Enter in the building you wish to edit a room from");
                         buildingName = sc1.nextLine();
                         
+                        //check if building exists
                         if(dbc.getBuilding(db, buildingName)==null){
                             System.out.println("Building doesn't exist");
                             break;
@@ -1662,6 +1693,12 @@ public class CECS343Team4 {
                         
                         System.out.println("Enter in the room you wish to delete");
                         roomName = sc1.nextLine();
+                        
+                        //check if room exists
+                        if(dbc.getRoom(db, buildingName, roomName) == null){
+                            System.out.println("Room doesn't exist");
+                            break;
+                        }
                         
                         System.out.println("Would you like to change the room name? y or n");
                       
@@ -1719,7 +1756,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         /**********list id of all employees *************/
-                        
+                        System.out.println();
                         System.out.println("Enter in the ID of the employee you wish to edit");
                         id = sc1.nextInt();
                         
