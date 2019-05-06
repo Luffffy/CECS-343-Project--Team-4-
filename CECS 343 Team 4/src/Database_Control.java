@@ -2,10 +2,12 @@ import java.time.LocalTime;
 import java.util.*;
 public class Database_Control {
     
-    public void addInfo()
+    public University getUniversity(Database db)
     {
-        
+        University temp = db.getUni();
+        return temp;
     }
+    
     public College getCollege(Database db, String c)
     {
         College temp = db.getUni().contains(c);

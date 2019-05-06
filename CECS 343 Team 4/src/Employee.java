@@ -43,6 +43,7 @@ public class Employee {
     }
     
     public boolean getProfessor(){
+        isProfessor();
         return isProfessor;
     }
     
@@ -59,6 +60,7 @@ public class Employee {
     
     public void checkProfessor()
     {
+        isProfessor();
         if(isProfessor)
         {
             System.out.println(Name + " is a professor.");
@@ -92,17 +94,6 @@ public class Employee {
         }
         System.out.println();
     }
-    
-//    public String TeachingScheduleString()
-//    {
-//        String temp = "";
-//        for(Course c: coursesTeaching)
-//        {
-//            //temp += c.getCourseName() + " " + c.getDay() + " " + c.getTime() + " " + c.getLocation() + "\n";
-//        }
-//        
-//        return temp;
-//    }
     
     public String toString()
     {
