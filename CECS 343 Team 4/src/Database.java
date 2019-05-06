@@ -225,27 +225,44 @@ public class Database {
         ac.assignGrade(this, 3, tempss3, 'A');
         System.out.println();
         
-/*****************************************************************************************************/    
-/*****************************************************************************************************/    
-/*****************************************************************************************************/    
         //removing a session that doesn't exist
-        //this doesn't work and im' too tired to figure out why
-        System.out.println("removing a session that doesn't exist (this doesn't work)");
-        Session tempss5 = new Session("06", 0, 3, true, tempb, tempr, tempst, tempet, tempcc2);
+        System.out.println("removing a session that doesn't exist from the student's schedule");
+        Session tempss5 = new Session("05", 0, 3, true, tempb, tempr, tempst, tempet, tempcc2);
         dbc.addSession(this, "CollegeName", "DepartmentName", "MajorName", "CourseName2", tempss5);
         sc.addSession(this, 3, tempss5);
-        dbc.getStudent(this, 3).studentProfile();
-        sc.removeSession(this, 3, "abc");
+        //dbc.getStudent(this, 3).studentProfile();
+        sc.removeSession(this, 3, "abcdef");
         System.out.println();
         
         //removing a session that exists
-        System.out.println("removing a session that exists");
+        System.out.println("removing a session that exists in the student's schedule");
         tempst = LocalTime.of(16, 0);
         tempet = LocalTime.of(17, 0);
         Session tempss4 = new Session("05", 0, 1, true, tempb, tempr, tempst, tempet, tempcc2);
         dbc.addSession(this, "CollegeName", "DepartmentName", "MajorName", "CourseName2", tempss4);
-        sc.addSession(this, 3, tempss4);        
+        sc.addSession(this, 3, tempss4);    
         sc.removeSession(this, 3, "05");
+        System.out.println();
+        
+        //student adding a course but doesn't have the prereq
+        System.out.println("student adding a course but doesn't have the prereq");
+        Course preReq1 = new Course("Prereq1", 1);
+        preReq1.addPrereqCourse(tempss1.getCourse());
+        dbc.addCourse(this, "CollegeName", "DepartmentName", "MajorName", preReq1);
+        Session tempssp5 = new Session("05", 0, 6, true, tempb, tempr, tempst, tempet, preReq1);
+        dbc.addSession(this, "CollegeName", "DepartmentName", "MajorName", "Prereq1", tempssp5);
+        sc.addSession(this, 3, tempssp5);
+        System.out.println();
+        
+        
+        //student adding a course and has the prereq
+        System.out.println("student adding a course and has the prereq");
+        Course preReq2 = new Course("Prereq2", 1);
+        preReq2.addPrereqCourse(tempss3.getCourse());
+        dbc.addCourse(this, "CollegeName", "DepartmentName", "MajorName", preReq2);
+        Session tempssp6 = new Session("05", 0, 6, true, tempb, tempr, tempst, tempet, preReq2);
+        dbc.addSession(this, "CollegeName", "DepartmentName", "MajorName", "Prereq2", tempssp6);
+        sc.addSession(this, 3, tempssp6);
         System.out.println();
         
         

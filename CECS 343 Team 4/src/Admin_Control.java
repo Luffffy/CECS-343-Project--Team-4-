@@ -13,7 +13,7 @@ public class Admin_Control {
         }
         else
         {
-            System.out.println("Session is not in the Student's schedule");
+            System.out.println("Session is not in the Student's schedule so a grade cannot be added");
         }
     }
     

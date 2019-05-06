@@ -52,7 +52,7 @@ public class Database_Control {
     {
         if(db.getUni().getCollegeList().size() < 10) {
             db.getUni().addCollege(c);
-            System.out.println("College has been added to the Database");
+            System.out.println("College " + c.getCollegeName() + " has been added to the Database");
         } else {
             System.out.println("University can't have more than 10 Colleges");
         }
@@ -62,7 +62,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(college).getDepartmentList().size() < 30) {
             db.getUni().contains(college).addDepartment(d);
-            System.out.println("Department has been added to the Database");
+            System.out.println("Department " + d.getDepartmentName() + " has been added to the Database");
         } else {
             System.out.println("College can't have more than 30 Departments");
         }
@@ -72,7 +72,7 @@ public class Database_Control {
     {
        if(db.getUni().contains(college).contains(department).getMajorList().size() < 50) {
             db.getUni().contains(college).contains(department).addMajor(m);
-            System.out.println("Major has been added to the Database");
+            System.out.println("Major " + m.getMajorName() + " has been added to the Database");
         } else {
             System.out.println("Department can't have more than 50 majors");
         }
@@ -82,7 +82,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(college).contains(department).contains(major).getCourseList().size() < 100) {
             db.getUni().contains(college).contains(department).contains(major).addCourse(c);
-            System.out.println("Course has been added to the Database");
+            System.out.println("Course " + c.getCourseName() + " has been added to the Database");
         } else {
             System.out.println("Major can't have more than 100 courses");
         }
@@ -103,7 +103,7 @@ public class Database_Control {
         }
         if(db.getUni().contains(college).contains(department).contains(major).contains(course).getSessionList().size() < 100) {
             db.getUni().contains(college).contains(department).contains(major).contains(course).addSession(s);
-            System.out.println("Session has been added to the Database");
+            System.out.println("Session " + s.getSessionNumber() + " has been added to the Database");
         } else {
             System.out.println("Course can't have more than 30 Sessions");
         }
@@ -113,7 +113,7 @@ public class Database_Control {
     {
         if(!db.getBuildings().containsKey(building.getName()))
         {
-            System.out.println("Building added to the Database");
+            System.out.println("Building " + building.getBuildingName() + " added to the Database");
             db.getBuildings().put(building.getName(), building);
         }
         else
@@ -126,7 +126,7 @@ public class Database_Control {
     {
         if(db.getBuildings().containsKey(building))
         {
-            System.out.println("Room has been added to " + building);
+            System.out.println("Room " + room.getRoomName() + " has been added to " + building);
             db.getBuilding(building).getRoomList().add(room);
         }
         else
@@ -140,7 +140,7 @@ public class Database_Control {
         
         if(db.getUni().contains(c).isEmpty() == false)
         {
-            System.out.println("Can't remove");
+            System.out.println(c + " cannot be removed because it contains Departments");
         }
         else
         {
@@ -153,7 +153,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(c).contains(d).isEmpty() == false)
         {
-            System.out.println("Can't remove");
+            System.out.println(d + " cannot be removed because it contains Majors");
         }
         else
         {
@@ -166,7 +166,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(c).contains(d).contains(m).isEmpty() == false)
         {
-            System.out.println("Can't remove");
+            System.out.println(m + " cannot be removed because it contains Courses");
         }
         else
         {
@@ -179,7 +179,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(c).contains(d).contains(m).contains(cc).isEmpty() == false)
         {
-            System.out.println("Can't remove");
+            System.out.println(cc + "Cannot be removed because it contains sessions");
         }
         else
         {
@@ -192,7 +192,7 @@ public class Database_Control {
     {
         if(db.getUni().contains(c).contains(d).contains(m).contains(cc).contains(s).isEmpty() == false)
         {
-            System.out.println("Can't remove");
+            System.out.println(s + " cannot be removed because it is in Student's schedules");
         }
         else
         {

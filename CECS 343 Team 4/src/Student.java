@@ -106,6 +106,7 @@ public class Student {
         for (int i = 0; i < size; i++) {
             System.out.print(sessions.get(i).getCourse().getCourseName() + " | ");
         }
+        System.out.println();
     }
     
     public boolean isEmpty()

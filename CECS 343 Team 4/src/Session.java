@@ -176,12 +176,14 @@ public class Session {
         students.add(s);
     }
     
-    public void removeSession(Student s) {
+    public void removeStudent(Student s) {
         students.remove(s);
     }
     
     public ArrayList<Student> getStudentList() {
         return students;
     }
+    
+    
 }
 

@@ -18,28 +18,36 @@ public class Student_Control {
         Student student = db.getStudent(sID);
         if(checkTuition(student))
         {
-            if(student.studentTotalUnits() <= 20 && (student.studentTotalUnits() + session.getUnits()) <= 20)
+            if(tookPrereqs(db, student, session))
             {
-                ArrayList<Session> temp = student.getSessionList();
-                boolean conflict = false;
-                for(Session s: temp)
+                if(student.studentTotalUnits() <= 20 && (student.studentTotalUnits() + session.getUnits()) <= 20)
                 {
-                    if(timeConflict(s, session))
+                    ArrayList<Session> temp = student.getSessionList();
+                    boolean conflict = false;
+                    for(Session s: temp)
                     {
-                        System.out.println("Cannot add session because it has a time conflict with another session");
-                        conflict = true;
+                        if(timeConflict(s, session))
+                        {
+                            System.out.println("Cannot add session because it has a time conflict with another session");
+                            conflict = true;
+                        }
+                    }
+            
+                    if(!conflict)
+                    {
+                        student.addSession(session);
+                        session.addStudent(student);
+                        System.out.println("Session has been added to the Student's schedule");
                     }
                 }
-            
-                if(!conflict)
+                else
                 {
-                    student.addSession(session);
-                    System.out.println("Session has been added to the Student's schedule");
+                    System.out.println("Student cannot go over 20 units total");
                 }
             }
             else
             {
-                System.out.println("Student cannot go over 20 units total");
+                System.out.println("Student has not taken the prerequisites for this course");
             }
         }
     }
@@ -48,14 +56,15 @@ public class Student_Control {
     {
         Student student = db.getStudent(sID);
         boolean canRemove = false;
+                 
         if(!student.getSessionList().isEmpty())
         {
             ArrayList<Session> temp = student.getSessionList();
             Session temps = null;
             for(Session session: temp)
             {
-                if(session.getSessionNumber().equals(s));
-                {
+                if(session.getSessionNumber().equals(s))
+                { 
                   temps = session;
                   canRemove = true;  
                 }
@@ -63,6 +72,7 @@ public class Student_Control {
             if(canRemove)
             {
                 db.getStudent(sID).removeSession(temps);
+                temps.removeStudent(student);
                 System.out.println("Session has been removed from the Student's schedule");
             }
             else
