@@ -1077,7 +1077,7 @@ public class CECS343Team4 {
                         collegeName = sc1.nextLine();
 
                         //check if college exists before moving forward
-                        if(dbc.getCollege(db, roomName)== null){
+                        if(dbc.getCollege(db, collegeName)== null){
                             System.out.println("College doesn't exist");
                             break;
                         }
@@ -1927,15 +1927,15 @@ public class CECS343Team4 {
                             System.out.println("Enter in the session you want to change a grade for");
                             sessionNumber = sc1.nextLine();
 
-                            /****** not sure if this works *********/
+                            /****** not sure if this works *********//*
                             if(!dbc.getStudent(db, id).getSessionList().contains(sessionNumber)){
                                 System.out.println("Session doesn't exist");
                                 break;
-                            }
-
+                            }*/
+                            Session temp = new Session(sessionNumber, 0, -1, true, null, null, null, null, null);
                             //not sure about this
                             System.out.println("Change the student grade");
-                            //ac.assignGrade(db, id, ,sc1.next().charAt(0));
+                            ac.assignGrade(db, id, temp, sc1.next().charAt(0));
                         }
                         break;
                     case 9:
