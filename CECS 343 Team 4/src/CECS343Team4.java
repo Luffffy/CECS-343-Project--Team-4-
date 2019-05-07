@@ -447,7 +447,7 @@ public class CECS343Team4 {
                             System.out.println("Course doesn't exist");
                             break;
                         }
-
+                           course = dbc.getCourse(db, collegeName, departmentName, majorName, courseName);
                         //print out list of buildings
                         dbc.printBuildingNames(db);
 
@@ -458,7 +458,7 @@ public class CECS343Team4 {
                             System.out.println("Building doesn't exist");
                             break;
                         }
-
+                        building = dbc.getBuilding(db, buildingName);
                         //print out list of rooms
                         System.out.println("List of Rooms: " + dbc.getBuilding(db, buildingName).getRooms());
                         System.out.println("Enter in the room name");
@@ -468,7 +468,7 @@ public class CECS343Team4 {
                             System.out.println("Room doesn't exist");
                             break;
                         }
-
+                        room = dbc.getRoom(db, buildingName, roomName);
                         //print out list of session numbers
                         System.out.println("List of Sessions: " + dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
 
@@ -497,16 +497,16 @@ public class CECS343Team4 {
 
 
 
-                        System.out.println("What is the start time? Enter in this format 00:00. (24 hour format)");
+                        System.out.println("What is the start time? Enter in this format hh:mm. (24 hour format)");
                         Scanner input = new Scanner (System.in);
                         String start = input.nextLine();
                         startTime = LocalTime.parse(start);
 
-                        System.out.println("What is the end time? Enter in this format 00:00. (24 hour format)");
+                        System.out.println("What is the end time? Enter in this format hh:mm. (24 hour format)");
                         String end = input.nextLine();
                         endTime = LocalTime.parse(end);
-
-                        Session temp = new Session( "tempName", 0, day, semester, building, room, startTime, endTime, course);
+                        //input.close();
+                        Session temp = new Session( sessionNumber, id, day, semester, building, room, startTime, endTime, course);
 
 
                         //List all of the employees
@@ -514,8 +514,9 @@ public class CECS343Team4 {
                         dbc.printEmployeeIDs(db);
 
                         System.out.println("\nEnter in the professor id");
+                        sc1.reset();
                         id = sc1.nextInt();
-
+                        
                         if(dbc.getEmployee(db, id)== null){
                             System.out.println("Employee doesn't exist");
                             break;
@@ -913,7 +914,7 @@ public class CECS343Team4 {
                             System.out.println("Course doesn't exist");
                             break;
                         }
-
+                        course = dbc.getCourse(db, collegeName, departmentName, majorName, courseName);
                         //print out a list of buildings
                         dbc.printBuildingNames(db);
                         System.out.println("Enter in building name");
@@ -923,7 +924,7 @@ public class CECS343Team4 {
                             System.out.println("Building doesn't exist");
                             break;
                         }
-
+                        building = dbc.getBuilding(db, buildingName);
                         //print out list of rooms
                         System.out.println("List of Rooms: " + dbc.getBuilding(db, buildingName).getRooms());
                         System.out.println("Enter in the room name");
@@ -933,7 +934,7 @@ public class CECS343Team4 {
                             System.out.println("Room doesn't exist");
                             break;
                         }
-
+                        room = dbc.getRoom(db, buildingName, roomName);
                         //print out a list of sessions
                         System.out.println("List of Sessions: " +dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
 
@@ -963,7 +964,7 @@ public class CECS343Team4 {
                         endTime = LocalTime.parse(sc1.nextLine());
 
 
-                        Session temp = new Session( "tempName", -1, day, semester, building, room, startTime, endTime, course);
+                        Session temp = new Session( "tempName", 0, day, semester, building, room, startTime, endTime, course);
 
                         System.out.println("Enter in the professor id");
                         id = sc1.nextInt();
@@ -1048,6 +1049,7 @@ public class CECS343Team4 {
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input");
+                System.out.println(e.getCause());
                 sc1.nextLine();
             }
 
@@ -1211,7 +1213,7 @@ public class CECS343Team4 {
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input\n");
-                System.out.println(e.getCause());
+                //System.out.println(e.getCause());
                 //sc1.next();
                 
             }
