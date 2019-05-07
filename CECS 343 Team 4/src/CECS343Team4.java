@@ -849,9 +849,6 @@ public class CECS343Team4 {
                         System.out.println("Enter the session number");
                         sessionNumber = sc1.nextLine();
                         
-                        System.out.println("Enter in the professor id");
-                        id = sc1.nextInt();
-                        
                         System.out.println("Enter in the semester fall or spring");
                         input = sc1.nextLine();
                         if(input.compareToIgnoreCase("fall") == 0){
@@ -874,10 +871,11 @@ public class CECS343Team4 {
                         System.out.println("What is the end time. Enter in this format 00:00");
                         endTime = LocalTime.parse(sc1.nextLine());
                         
+                        
+                        Session temp = new Session( "tempName", -1, day, semester, building, room, startTime, endTime, course);
+   
                         System.out.println("Enter in the professor id");
-                        id = sc1.nextInt();
-                        
-                        
+                        id = sc1.nextInt();                     
                         
                         if(!ec.checkClassConflict(dbc.getEmployee(db, id), temp)){
                             Session add = new Session ( sessionNumber , id, day, semester, building, room, startTime, endTime, course);
@@ -1592,10 +1590,9 @@ public class CECS343Team4 {
                             System.out.println("Change the course units");
                             dbc.getCourse(db, collegeName, departmentName, majorName, courseName).setCourseUnits(sc1.nextInt());
                         }
-                        
-                        
-                        
+              
                         break;
+                        
                     case 5:
                         //Session
                         sc1.nextLine();
@@ -1669,9 +1666,23 @@ public class CECS343Team4 {
                         
                         
                         System.out.println("Do you wish to edit the session professor? y or n");
-                        if(sc1.nextLine().compareToIgnoreCase("y")==0){
+                        if (sc1.nextLine().compareToIgnoreCase("y") == 0) {
                             System.out.println("Change the session professor");
-                            dbc.getSession(db, collegeName, departmentName, majorName, courseName,sessionNumber).setProf(sc1.nextInt());
+                            
+                            Session temp = new Session("tempName", -1, day, semester, building, room, startTime, endTime, course);
+
+                            System.out.println("Enter in the professor id");
+                            id = sc1.nextInt();
+
+                            // check for time conflict with professor
+                            if (!ec.checkClassConflict(dbc.getEmployee(db, id), temp)) {
+                                
+                                dbc.getSession(db, collegeName, departmentName, majorName, courseName, sessionNumber).setProf(id);
+                            } else {
+                                System.out.println("Cannot add this session because it conflicts with the profs teaching schedule");
+                                
+                            }
+                            
                         }
                         
                         System.out.println("Do you wish to edit the session building? y or n");
