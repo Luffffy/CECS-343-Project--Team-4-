@@ -104,13 +104,13 @@ public class CECS343Team4 {
                     System.out.println("Welcome admin");
 
                     //create admin menu
-                    //adminMenuDisplay();
+                    adminMenuDisplay();
 
                 } else if (dbc.studentExists(db, loginput)) {
                     System.out.println("Welcome student");
 
                     // create student menu
-                    //studentMenuDisplay();
+                    studentMenuDisplay();
                 } else {
                     System.out.println("Invalid id recognized\n");
                 }
@@ -170,7 +170,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out a list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         //character limit checking for college name
                         do {
@@ -182,6 +182,7 @@ public class CECS343Team4 {
 
                         } while (collegeName.length() > 60);
 
+                        
                         System.out.println("Enter deanID for this college");
                         deanID = sc1.nextInt();
                         
@@ -211,7 +212,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
 
                          //print out a list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("What college would you like to add a department to?");
                         collegeName = sc1.nextLine();
@@ -222,7 +223,7 @@ public class CECS343Team4 {
                             break;
                         }
                         //print out a list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         //character limit check
                         do {
@@ -249,7 +250,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
 
                          //print out a list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("\nWhat college would you like to add a major to?");
                         collegeName = sc1.nextLine();
@@ -261,7 +262,7 @@ public class CECS343Team4 {
                         }
                         
                           //print out a list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                           
                         System.out.println("\nWhat department would you like to add a major to?");
                         departmentName = sc1.nextLine();
@@ -273,7 +274,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out a list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
 
                         //character limit check
@@ -282,7 +283,7 @@ public class CECS343Team4 {
 
                             majorName = sc1.nextLine();
                             if (majorName.length() > 60) {
-                                System.out.println("Too many characters for department name");
+                                System.out.println("Too many characters for major name");
                             }
                         } while (majorName.length() > 60);
 
@@ -296,7 +297,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out a list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("\nWhat college would you like to add a course to?");
                         collegeName = sc1.nextLine();
@@ -308,7 +309,7 @@ public class CECS343Team4 {
                         }
                         
                         // print list of departments in college
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("\nWhat department would you like to add a course to?");
                         departmentName = sc1.nextLine();
@@ -320,7 +321,7 @@ public class CECS343Team4 {
                         }
                         
                         //print list of majors in the department
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("\nWhat major would you like to add a course to?");
                         majorName = sc1.nextLine();
@@ -332,7 +333,7 @@ public class CECS343Team4 {
                         }
                         
                         //print list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " + dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         //character limit check
                         do {
@@ -340,7 +341,7 @@ public class CECS343Team4 {
 
                             courseName = sc1.nextLine();
                             if (courseName.length() > 60) {
-                                System.out.println("Too many characters for department name");
+                                System.out.println("Too many characters for course name");
                             }
                         } while (courseName.length() > 60);
                         
@@ -380,7 +381,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college you wish to add a session to");
                         collegeName = sc1.nextLine();
@@ -392,7 +393,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments for that college
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department you wish to add a session to");
                         departmentName = sc1.nextLine();
@@ -404,7 +405,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors for that department
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major you wish to add a session to");
                         majorName = sc1.nextLine();
@@ -416,7 +417,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out the list of courses for that major
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " + dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         System.out.println("Enter the course you wish to add a session to");
                         courseName = sc1.nextLine();
@@ -429,7 +430,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of session numbers
-                        System.out.println(dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
+                        System.out.println("List of Sessions: " + dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
                         
                         System.out.println("Enter the session number");
                         sessionNumber = sc1.nextLine();
@@ -467,8 +468,9 @@ public class CECS343Team4 {
                         
                         //List all of the employees
                         /****************/
+                        dbc.printEmployeeIDs(db);
                       
-                        System.out.println("Enter in the professor id");
+                        System.out.println("\nEnter in the professor id");
                         id = sc1.nextInt();
                         
                         
@@ -503,7 +505,9 @@ public class CECS343Team4 {
                         //add room
                         sc1.nextLine();
                         
-                        System.out.println("Enter the building to insert room into");
+                        dbc.printBuildingNames(db);
+                        
+                        System.out.println("\nEnter the building to insert room into");
                         buildingName = sc1.nextLine();
                        
                         //check if building exists before moving forward
@@ -513,7 +517,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out a list of rooms
-                        System.out.println(dbc.getBuilding(db, buildingName).getRooms());
+                        System.out.println("List of Rooms: " + dbc.getBuilding(db, buildingName).getRooms());
                         
                         System.out.println("Enter in the room name");
                         roomName = sc1.nextLine();
@@ -589,7 +593,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         //character limit checking for college name
                         do {
@@ -624,7 +628,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //display list of college
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("What college would you like to add a department to?");
                         collegeName = sc1.nextLine();
@@ -636,7 +640,7 @@ public class CECS343Team4 {
                         }
 
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         //character limit check
                         do {
@@ -663,7 +667,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
 
                         //display list of departments and colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("\nWhat college would you like to add a major to?");
                         collegeName = sc1.nextLine();
@@ -676,7 +680,7 @@ public class CECS343Team4 {
                         }
                         
                           //print out list of departments
-                          System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                          System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                           
                         System.out.println("\nWhat department would you like to add a major to?");
                         departmentName = sc1.nextLine();
@@ -688,7 +692,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
 
                         //character limit check
                         do {
@@ -696,7 +700,7 @@ public class CECS343Team4 {
 
                             majorName = sc1.nextLine();
                             if (majorName.length() > 60) {
-                                System.out.println("Too many characters for department name");
+                                System.out.println("Too many characters for Major name");
                             }
                         } while (majorName.length() > 60);
 
@@ -710,7 +714,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " +dbc.getUniversity(db).getColleges());
                         
                         System.out.println("\nWhat college would you like to add a course to?");
                         collegeName = sc1.nextLine();
@@ -722,7 +726,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db,collegeName).getDepartments());
+                        System.out.println("List of Departments: " +dbc.getCollege(db,collegeName).getDepartments());
                         
                         System.out.println("\nWhat department would you like to add a course to?");
                         departmentName = sc1.nextLine();
@@ -734,7 +738,7 @@ public class CECS343Team4 {
                         }
                             
                             //print out list of majors
-                            System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                            System.out.println("List of Majors: " +dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         
                         System.out.println("\nWhat major would you like to add a course to?");
@@ -747,7 +751,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out a list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName));
+                        System.out.println("List of Courses: " +dbc.getMajor(db, collegeName, departmentName, majorName));
                         
                         //character limit check
                         do {
@@ -755,7 +759,7 @@ public class CECS343Team4 {
 
                             courseName = sc1.nextLine();
                             if (courseName.length() > 60) {
-                                System.out.println("Too many characters for department name");
+                                System.out.println("Too many characters for Course name");
                             }
                         } while (courseName.length() > 60);
                         
@@ -890,7 +894,8 @@ public class CECS343Team4 {
                     case 8:
                         sc1.nextLine();
                         //add building
-                        System.out.println("Enter in the building name");
+                        dbc.printBuildingNames(db);
+                        System.out.println("\nEnter in the building name");
                         String name = sc1.nextLine();
                         
                         System.out.println("Enter in the occupancy limit");
@@ -906,11 +911,12 @@ public class CECS343Team4 {
                         //add room
                         sc1.nextLine();
                         
-                        System.out.println("Enter the building to insert room into");
+                        dbc.printBuildingNames(db);
+                        System.out.println("\nEnter the building to insert room into");
                         buildingName = sc1.nextLine();
                        
                         //print out a list of rooms
-                            System.out.println(dbc.getBuilding(db, buildingName).getRooms());
+                            System.out.println("List of Roomss: " +  dbc.getBuilding(db, buildingName).getRooms());
                         
                         //check if building exists before moving forward
                         if(dbc.getBuilding(db, buildingName)== null){
@@ -973,7 +979,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college you wish to add a session to");
                         collegeName = sc1.nextLine();
@@ -985,7 +991,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department you wish to add a session to");
                         departmentName = sc1.nextLine();
@@ -997,7 +1003,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major you wish to add a session to");
                         majorName = sc1.nextLine();
@@ -1009,7 +1015,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " + dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         System.out.println("Enter the course you wish to add a session to");
                         courseName = sc1.nextLine();
@@ -1022,12 +1028,12 @@ public class CECS343Team4 {
                         }
                         
                         //print out a list of sessions
-                        System.out.println(dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
+                        System.out.println("List of Sessions: " + dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
                         
                         System.out.println("Enter the session number");
                         sessionNumber = sc1.nextLine();
                         
-                       
+                       /*
                         System.out.println("Enter in the semester fall or spring");
                         input = sc1.nextLine();
                         if(input.compareToIgnoreCase("fall") == 0){
@@ -1040,6 +1046,7 @@ public class CECS343Team4 {
                             System.out.println("Invalid input");
                             break;
                         }
+                        */
                         
                         sco.addSession(db, loginput, dbc.getSession(db, collegeName, departmentName, majorName, courseName, sessionNumber));
                         
@@ -1062,7 +1069,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         System.out.println("Enter in a college to select a major");
                         
                         collegeName = sc1.nextLine();
@@ -1073,7 +1080,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments to select major
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department to select a major from");
                         departmentName = sc1.nextLine();
@@ -1084,7 +1091,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Select the major");
                         majorName = sc1.nextLine();
@@ -1111,15 +1118,6 @@ public class CECS343Team4 {
         }while (studentMenuInput != 4);
     }
 
-    
-    
-    public static void printIDs(int ids) {
-        //for (int i = 0; i < ids.size(); i++) {
-            System.out.println("ID#: " + String.format("%09d", ids));
-        //}
-    }
-
-
     public static void delete_Menu(){
        sc1.nextLine();
         int deleteinput = 0;
@@ -1137,7 +1135,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college you wish to delete");
                         collegeName = sc1.nextLine();
@@ -1149,7 +1147,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college you want to delete a department from");
                         collegeName = sc1.nextLine();
@@ -1161,7 +1159,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department you wish to delete");
                         departmentName = sc1.nextLine();
@@ -1174,7 +1172,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college to delete a major from");
                         collegeName = sc1.nextLine();
@@ -1186,7 +1184,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department to delete a major from");
                         departmentName = sc1.nextLine();
@@ -1198,7 +1196,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName));
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName));
                         
                         System.out.println("Enter in the major you wish to delete");
                         majorName = sc1.nextLine();
@@ -1210,7 +1208,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college to delete a course from");
                         collegeName = sc1.nextLine();
@@ -1222,7 +1220,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department to delete a course from");
                         departmentName = sc1.nextLine();
@@ -1234,7 +1232,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major to delete a course from");
                         majorName = sc1.nextLine();
@@ -1246,7 +1244,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " + dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         System.out.println("Enter in the course you wish to delete");
                         courseName = sc1.nextLine();
@@ -1258,7 +1256,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college to delete a session from");
                         collegeName = sc1.nextLine();
@@ -1270,7 +1268,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department to delete a session from");
                         departmentName = sc1.nextLine();
@@ -1282,7 +1280,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major to delete a session from");
                         majorName = sc1.nextLine();
@@ -1294,7 +1292,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " + dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         System.out.println("Enter in the course to delete a session from");
                         courseName = sc1.nextLine();
@@ -1306,7 +1304,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of sessions
-                        System.out.println(dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
+                        System.out.println("List of Sessions: " + dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
                         
                         System.out.println("Enter in the session number to delete a session");
                         sessionNumber = sc1.nextLine();
@@ -1329,7 +1327,9 @@ public class CECS343Team4 {
                         //Room
                         sc1.nextLine();
                         
-                        System.out.println("Enter in the building you wish to delete a room from");
+                        dbc.printBuildingNames(db);
+                        
+                        System.out.println("\nEnter in the building you wish to delete a room from");
                         buildingName = sc1.nextLine();
                         
                         if(dbc.getBuilding(db, buildingName)==null){
@@ -1338,7 +1338,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of rooms
-                        System.out.println(dbc.getBuilding(db, buildingName).getRooms());
+                        System.out.println("List of Rooms: " + dbc.getBuilding(db, buildingName).getRooms());
                         
                         System.out.println("Enter in the room you wish to delete");
                         roomName = sc1.nextLine();
@@ -1351,8 +1351,9 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         /********print list of students*********/
+                        dbc.printStudentIDs(db);
                         
-                        System.out.println("Enter in the ID of the student you wish to delete.");
+                        System.out.println("\nEnter in the ID of the student you wish to delete.");
                         
                         id = sc1.nextInt();
                         dbc.removeStudent(db, id);
@@ -1364,8 +1365,9 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         /******print list of employees *******/
+                        dbc.printEmployeeIDs(db);
                         
-                        System.out.println("Enter in the ID of the employee you wish to delete");
+                        System.out.println("\nEnter in the ID of the employee you wish to delete");
                         id = sc1.nextInt();
                         dbc.removeEmployee(db, id);
                         
@@ -1406,7 +1408,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college you wish to edit");
                         collegeName = sc1.nextLine();
@@ -1439,7 +1441,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college you want to edit a department from");
                         collegeName = sc1.nextLine();
@@ -1451,7 +1453,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department you wish to edit");
                         departmentName = sc1.nextLine();
@@ -1484,7 +1486,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college to edit a major from");
                         collegeName = sc1.nextLine();
@@ -1496,7 +1498,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department to edit a major from");
                         departmentName = sc1.nextLine();
@@ -1508,7 +1510,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major you wish to edit");
                         majorName = sc1.nextLine();
@@ -1530,7 +1532,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college to edit a course from");
                         collegeName = sc1.nextLine();
@@ -1542,7 +1544,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db,collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db,collegeName).getDepartments());
                         
                         System.out.println("Enter in the department to edit a course from");
                         departmentName = sc1.nextLine();
@@ -1554,7 +1556,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major to edit a course from");
                         majorName = sc1.nextLine();
@@ -1566,7 +1568,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " + dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         System.out.println("Enter in the course you wish to edit");
                         courseName = sc1.nextLine();
@@ -1598,7 +1600,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " + dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college to edit a session from");
                         collegeName = sc1.nextLine();
@@ -1610,7 +1612,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " + dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department to edit a session from");
                         departmentName = sc1.nextLine();
@@ -1622,7 +1624,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " + dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major to edit a session from");
                         majorName = sc1.nextLine();
@@ -1634,7 +1636,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " + dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         System.out.println("Enter in the course to edit a session from");
                         courseName = sc1.nextLine();
@@ -1646,7 +1648,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of sessions
-                        System.out.println(dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
+                        System.out.println("List of Sessions: " + dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
                         
                         System.out.println("Enter in the session number to edit the session");
                         sessionNumber = sc1.nextLine();
@@ -1732,7 +1734,9 @@ public class CECS343Team4 {
                         //Room
                         sc1.nextLine();
                         
-                        System.out.println("Enter in the building you wish to edit a room from");
+                        dbc.printBuildingNames(db);
+                        
+                        System.out.println("\nEnter in the building you wish to edit a room from");
                         buildingName = sc1.nextLine();
                         
                         //check if building exists
@@ -1742,7 +1746,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out list of rooms
-                        System.out.println(dbc.getBuilding(db, buildingName).getRooms());
+                        System.out.println("List of Rooms: " + dbc.getBuilding(db, buildingName).getRooms());
                         
                         System.out.println("Enter in the room you wish to delete");
                         roomName = sc1.nextLine();

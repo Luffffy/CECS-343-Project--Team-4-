@@ -336,6 +336,21 @@ public class Database_Control {
         db.printIDs();
     }
     
+    public void printStudentIDs(Database db)
+    {
+        db.printStudentIDs();
+    }
+    
+    public void printEmployeeIDs(Database db)
+    {
+        db.printEmployeeIDs();
+    }
+    
+    public void printBuildingNames(Database db)
+    {
+        db.printBuildingNames();
+        
+    }
     public boolean timeConflict(Session a, Session b)
     {
         LocalTime aS = a.getStartTime();

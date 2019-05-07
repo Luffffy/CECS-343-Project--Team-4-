@@ -96,19 +96,49 @@ public class Database {
         return getBuildings().containsKey(name);
     }
     
+    public void printBuildingNames()
+    {
+        
+        for(Map.Entry b: Buildings.entrySet())
+        {
+            System.out.println("Name: " + b.getKey());
+        }
+        
+    }
+    
     public void printIDs()
     {
         
         for(Map.Entry e: Employees.entrySet())
         {
-            System.out.println("Key:" + e.getKey() + " Value: " + ((Employee)e.getValue()).toString());
+            System.out.println(((Employee)e.getValue()).toString());
         }
         
         for(Map.Entry s: Students.entrySet())
         {
-            System.out.println("Key:" + s.getKey() + " Value: " + ((Student)s.getValue()).toString());
+            System.out.println(((Student)s.getValue()).toString());
         }
         
+        
+    }
+    
+    public void printEmployeeIDs()
+    {
+        
+        for(Map.Entry e: Employees.entrySet())
+        {
+            System.out.println(((Employee)e.getValue()).toString());
+        }
+        
+    }
+    
+    public void printStudentIDs()
+    {
+
+        for(Map.Entry s: Students.entrySet())
+        {
+            System.out.println(((Student)s.getValue()).toString());
+        }      
         
     }
     
