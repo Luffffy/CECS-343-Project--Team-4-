@@ -42,9 +42,9 @@ public class CECS343Team4 {
 
     private static Database_Control dbc = new Database_Control();
     private static Database db = new Database();
-    private static Employee_Control ec;
-    private static Admin_Control ac;
-    private static Student_Control sco;
+    private static Employee_Control ec = new Employee_Control();
+    private static Admin_Control ac = new Admin_Control();
+    private static Student_Control sco = new Student_Control();
     private static College college;
     private static Department department;
     private static Major major;
@@ -253,7 +253,7 @@ public class CECS343Team4 {
                         // prompt for chairid
                         System.out.println("Enter in chairID");
                         chairID = sc1.nextInt();
-                        if(dbc.getEmployee(db, id)== null){
+                        if(dbc.getEmployee(db, chairID)== null){
                             System.out.println("Employee doesn't exist");
                             break;
                         }
@@ -516,7 +516,10 @@ public class CECS343Team4 {
                         System.out.println("\nEnter in the professor id");
                         id = sc1.nextInt();
 
-
+                        if(dbc.getEmployee(db, id)== null){
+                            System.out.println("Employee doesn't exist");
+                            break;
+                        }
 
                         if(!ec.checkClassConflict(dbc.getEmployee(db, id), temp)){
                             Session add = new Session ( sessionNumber , id, day, semester, building, room, startTime, endTime, course);
@@ -1182,12 +1185,13 @@ public class CECS343Team4 {
 
                         System.out.println("Select the major");
                         majorName = sc1.nextLine();
-
+                        
+                        
                         if(dbc.getMajor(db, collegeName, departmentName, majorName) == null){
                             System.out.println("Major doesn't exist");
                             break;
                         }
-
+                           
                         sco.changeMajor(db, loginput, majorName);
                         break;
 
@@ -1195,7 +1199,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         System.out.println("Profile: " + loginput);
                         sco.printProfile(db, loginput);
-                        sc1.nextLine();
+                        
                         break;
 
                     case 5:
@@ -1207,7 +1211,9 @@ public class CECS343Team4 {
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input\n");
-                sc1.next();
+                System.out.println(e.getCause());
+                //sc1.next();
+                
             }
         }while (studentMenuInput != 5);
     }
@@ -1927,7 +1933,7 @@ public class CECS343Team4 {
 
                             //not sure about this
                             System.out.println("Change the student grade");
-                            //ac.assignGrade(db, id, , sc1.next().charAt(0));
+                            //ac.assignGrade(db, id, ,sc1.next().charAt(0));
                         }
                         break;
                     case 9:

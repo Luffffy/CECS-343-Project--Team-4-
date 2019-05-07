@@ -16,6 +16,7 @@ public class Database_ControlTest {
         Database db = new Database();
         System.out.println("\n \nMenu");
         Database_Control dbc = new Database_Control();
+        Student_Control sc = new Student_Control();
         Employee e = new Employee( "Bob", 123456, 1000);
         dbc.addEmployee(db, e);
         
@@ -26,6 +27,9 @@ public class Database_ControlTest {
         dbc.setAdmin(db, wrong, true);
         
         dbc.printIDs(db);
+        
+        System.out.println("Profile: " + 3);
+        sc.printProfile(db, 3);
         
         
     }

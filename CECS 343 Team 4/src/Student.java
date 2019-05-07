@@ -9,7 +9,7 @@ import java.time.*;
 public class Student {
     private String studentName;
     private int studentID;
-    private String major;
+    private String major = "Undeclared";
     private int totalUnits = 0;
     private boolean paidTuition = false;
     
@@ -100,6 +100,7 @@ public class Student {
     }
     
     public void studentProfile() {
+        
         System.out.println("Name: " + studentName + " ID:" + studentID);
         System.out.println("Major: " + major);
         System.out.println("Register courses:");
@@ -116,6 +117,9 @@ public class Student {
             System.out.println("None");
         }
         System.out.println();
+
+        
+        
         
     }
     
