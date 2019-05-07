@@ -41,6 +41,7 @@ public class CECS343Team4 {
 
     private static Database_Control dbc = new Database_Control();
     private static Database db = new Database();
+    private static Employee_Control ec;
     private static Student_Control sco;
     private static College college;
     private static Department department;
@@ -433,11 +434,8 @@ public class CECS343Team4 {
                         System.out.println("Enter the session number");
                         sessionNumber = sc1.nextLine();
                         
-                        //List all of the employees
-                        /****************/
-                      
-                        System.out.println("Enter in the professor id");
-                        id = sc1.nextInt();
+                        
+                        
                         
                         System.out.println("Enter in the semester fall or spring");
                         input = sc1.nextLine();
@@ -464,9 +462,26 @@ public class CECS343Team4 {
                         System.out.println("What is the end time. Enter in this format 00:00");
                         endTime = LocalTime.parse(sc1.nextLine());
                         
+                        Session temp = new Session( "tempName", -1, day, semester, building, room, startTime, endTime, course);
+   
                         
-                        session = new Session(sessionNumber, id,day,semester, dbc.getBuilding(db, buildingName), dbc.getRoom(db, buildingName, roomName),startTime, endTime , dbc.getCourse(db, collegeName, departmentName, majorName, courseName));
-                        dbc.addSession(db, collegeName, departmentName, majorName, courseName, session);
+                        //List all of the employees
+                        /****************/
+                      
+                        System.out.println("Enter in the professor id");
+                        id = sc1.nextInt();
+                        
+                        
+                        
+                        if(!ec.checkClassConflict(dbc.getEmployee(db, id), temp)){
+                            Session add = new Session ( sessionNumber , id, day, semester, building, room, startTime, endTime, course);
+                            dbc.addSession(db, collegeName, departmentName, majorName, courseName, add);
+                        }
+                         else
+                        {
+                            System.out.println("Cannot add this session because it conflicts with the profs teaching schedule");
+                        }
+                        
                         break;
                         
                     case 9:
@@ -545,7 +560,7 @@ public class CECS343Team4 {
     public static void adminMenuDisplay() {
         
         do {
-            System.out.println("\nSuperUser Priviledges \n1. Add Admin \n2. Add Employee \n3. Add College \n4. Add Department \n5. Add Major \n6. Add Courses \n7. Add Student \n8. Add Session \n9. Add Building \n10. Add Room \n11. Edit \n12. Delete \n13. Back");
+            System.out.println("\nAdmin Priviledges \n1. Add Employee \n2. Add College \n3. Add Department \n4. Add Major \n5. Add Courses \n6. Add Student \n7. Add Session \n8. Add Building \n9. Add Room \n10. Edit \n11. Delete \n12. Back");
 
             try {
 
@@ -859,9 +874,19 @@ public class CECS343Team4 {
                         System.out.println("What is the end time. Enter in this format 00:00");
                         endTime = LocalTime.parse(sc1.nextLine());
                         
+                        System.out.println("Enter in the professor id");
+                        id = sc1.nextInt();
                         
-                        session = new Session(sessionNumber, id,day,semester, dbc.getBuilding(db, buildingName), dbc.getRoom(db, buildingName, roomName),startTime, endTime , dbc.getCourse(db, collegeName, departmentName, majorName, courseName));
-                        dbc.addSession(db, collegeName, departmentName, majorName, courseName, session);
+                        
+                        
+                        if(!ec.checkClassConflict(dbc.getEmployee(db, id), temp)){
+                            Session add = new Session ( sessionNumber , id, day, semester, building, room, startTime, endTime, course);
+                            dbc.addSession(db, collegeName, departmentName, majorName, courseName, add);
+                        }
+                         else
+                        {
+                            System.out.println("Cannot add this session because it conflicts with the profs teaching schedule");
+                        }
                         break;
                         
                     case 8:
@@ -1004,9 +1029,7 @@ public class CECS343Team4 {
                         System.out.println("Enter the session number");
                         sessionNumber = sc1.nextLine();
                         
-                        System.out.println("Enter in the professor id");
-                        id = sc1.nextInt();
-                        
+                       
                         System.out.println("Enter in the semester fall or spring");
                         input = sc1.nextLine();
                         if(input.compareToIgnoreCase("fall") == 0){
@@ -1019,17 +1042,6 @@ public class CECS343Team4 {
                             System.out.println("Invalid input");
                             break;
                         }
-                        
-                        System.out.println("Enter in the day. 1-7 for Monday - Sunday");
-                        day = sc1.nextInt();
-                        
-                        System.out.println("What is the start time. Enter in this format 00:00");
-                        startTime = LocalTime.parse(sc1.nextLine());
-                        
-                        System.out.println("What is the end time. Enter in this format 00:00");
-                        endTime = LocalTime.parse(sc1.nextLine());
-                        
-                        
                         
                         sco.addSession(db, loginput, dbc.getSession(db, collegeName, departmentName, majorName, courseName, sessionNumber));
                         
@@ -1051,8 +1063,38 @@ public class CECS343Team4 {
                         
                         sc1.nextLine();
                         
+                        //print out list of colleges
+                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("Enter in a college to select a major");
+                        
+                        collegeName = sc1.nextLine();
+                        
+                        if(dbc.getCollege(db, collegeName) == null){
+                            System.out.println("College doesn't exist");
+                            break;
+                        }
+                        
+                        //print out list of departments to select major
+                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        
+                        System.out.println("Enter in the department to select a major from");
+                        departmentName = sc1.nextLine();
+                        
+                        if(dbc.getDepartment(db, collegeName, departmentName) == null){
+                            System.out.println("Department doesn't exist");
+                            break;
+                        }
+                        
+                        //print out list of majors
+                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        
                         System.out.println("Select the major");
                         majorName = sc1.nextLine();
+                        
+                        if(dbc.getMajor(db, collegeName, departmentName, majorName) == null){
+                            System.out.println("Major doesn't exist");
+                            break;
+                        }
                         
                         sco.changeMajor(db, loginput, majorName);
                         break;
