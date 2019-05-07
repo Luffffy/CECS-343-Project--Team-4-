@@ -1,11 +1,14 @@
 
 import java.time.*;
-
+import java.util.*;
 public class Session_test {
     
     public static void main(String[] arg)
     {
-        LocalTime aS = LocalTime.parse("10:00:00");
+        System.out.println("enter as");
+        Scanner input = new Scanner (System.in);
+        String asString = input.nextLine();
+        LocalTime aS = LocalTime.parse(asString);
         LocalTime aE = LocalTime.parse("12:00:00");
         LocalTime bS = LocalTime.parse("11:00:00");
         LocalTime bE = LocalTime.parse("13:00:00");

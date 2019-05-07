@@ -122,6 +122,11 @@ public class Student_Control {
         
     }
     
+    public void printProfile(Database db, int sID)
+    {
+        db.getStudent(sID).studentProfile();
+    }
+    
     public boolean timeConflict(Session a, Session b)
     {
         LocalTime aS = a.getStartTime();

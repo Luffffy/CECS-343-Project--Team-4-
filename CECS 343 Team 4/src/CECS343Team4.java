@@ -36,6 +36,7 @@ public class CECS343Team4 {
     private static int units = 0;
     private static int limit = 0;
     private static int id = 0;
+    private static int sID = 0;
     private static int day = 0;
     private static int loginput;
 
@@ -77,6 +78,7 @@ public class CECS343Team4 {
 
             try {
                 loginput = sc.nextInt();
+                
                 // terminate program if negative value is inputted
                 if (loginput < 0) {
                     return;
@@ -108,7 +110,7 @@ public class CECS343Team4 {
 
                 } else if (dbc.studentExists(db, loginput)) {
                     System.out.println("Welcome student");
-
+                    sID = loginput;
                     // create student menu
                     studentMenuDisplay();
                 } else {
@@ -241,7 +243,7 @@ public class CECS343Team4 {
                         chairID = sc1.nextInt();
                         department = new Department(departmentName,chairID);
                         dbc.addDepartment(db, collegeName, department);
-                        System.out.println("Department has been added");
+                        //System.out.println("Department has been added");
                        
                         break;
 
@@ -387,7 +389,7 @@ public class CECS343Team4 {
                         collegeName = sc1.nextLine();
                         
                         //check if college exists before moving forward
-                        if(dbc.getCollege(db, roomName)== null){
+                        if(dbc.getCollege(db, collegeName)== null){
                             System.out.println("College doesn't exist");
                             break;
                         }
@@ -457,13 +459,16 @@ public class CECS343Team4 {
                         
                         
                         
-                        System.out.println("What is the start time. Enter in this format 00:00");
-                        startTime = LocalTime.parse(sc1.nextLine());
+                        System.out.println("What is the start time? Enter in this format 00:00. (24 hour format)");
+                        Scanner input = new Scanner (System.in);
+                        String start = input.nextLine();
+                        startTime = LocalTime.parse(start);
                         
-                        System.out.println("What is the end time. Enter in this format 00:00");
-                        endTime = LocalTime.parse(sc1.nextLine());
+                        System.out.println("What is the end time? Enter in this format 00:00. (24 hour format)");
+                        String end = input.nextLine();
+                        endTime = LocalTime.parse(end);
                         
-                        Session temp = new Session( "tempName", -1, day, semester, building, room, startTime, endTime, course);
+                        Session temp = new Session( "tempName", 0, day, semester, building, room, startTime, endTime, course);
    
                         
                         //List all of the employees
@@ -799,19 +804,19 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         //print out a list of colleges
-                        System.out.println(dbc.getUniversity(db).getColleges());
+                        System.out.println("List of Colleges: " +dbc.getUniversity(db).getColleges());
                         
                         System.out.println("Enter in the college you wish to add a session to");
                         collegeName = sc1.nextLine();
                         
                         //check if college exists before moving forward
-                        if(dbc.getCollege(db, roomName)== null){
+                        if(dbc.getCollege(db, collegeName)== null){
                             System.out.println("College doesn't exist");
                             break;
                         }
                         
                         //print out a list of departments
-                        System.out.println(dbc.getCollege(db, collegeName).getDepartments());
+                        System.out.println("List of Departments: " +dbc.getCollege(db, collegeName).getDepartments());
                         
                         System.out.println("Enter in the department you wish to add a session to");
                         departmentName = sc1.nextLine();
@@ -823,7 +828,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out a list of majors
-                        System.out.println(dbc.getDepartment(db, collegeName, departmentName).getMajors());
+                        System.out.println("List of Majors: " +dbc.getDepartment(db, collegeName, departmentName).getMajors());
                         
                         System.out.println("Enter in the major you wish to add a session to");
                         majorName = sc1.nextLine();
@@ -835,7 +840,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out a list of courses
-                        System.out.println(dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
+                        System.out.println("List of Courses: " +dbc.getMajor(db, collegeName, departmentName, majorName).getCourses());
                         
                         System.out.println("Enter the course you wish to add a session to");
                         courseName = sc1.nextLine();
@@ -848,7 +853,7 @@ public class CECS343Team4 {
                         }
                         
                         //print out a list of sessions
-                        System.out.println(dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
+                        System.out.println("List of Sessions: " +dbc.getCourse(db, collegeName, departmentName, majorName, courseName).getSessions());
                         
                         System.out.println("Enter the session number");
                         sessionNumber = sc1.nextLine();
@@ -970,7 +975,7 @@ public class CECS343Team4 {
         int studentMenuInput = 0;
         
         do {
-            System.out.println("1. Add course \n2. Remove course \n3. Select major \n4. Back");
+            System.out.println("1. Add course \n2. Remove course \n3. Select major \n4. Student Profile \n5. Back");
 
             try {
                 studentMenuInput = sc1.nextInt();
@@ -1103,8 +1108,15 @@ public class CECS343Team4 {
                         
                         sco.changeMajor(db, loginput, majorName);
                         break;
+                    
+                    case 4: 
+                        sc1.nextLine();
+                        System.out.println("Profile: " + loginput);
+                        sco.printProfile(db, loginput);
+                        sc1.nextLine();
+                        break;
                         
-                    case 4:
+                    case 5:
                         System.out.println("Going back to login\n");
                         sc1.nextLine();
                         return;
@@ -1115,7 +1127,7 @@ public class CECS343Team4 {
                 System.out.println("Invalid input\n");
                 sc1.next();
             }
-        }while (studentMenuInput != 4);
+        }while (studentMenuInput != 5);
     }
 
     public static void delete_Menu(){
@@ -1777,8 +1789,8 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         /******list id of all students **********/
-                        
-                        System.out.println("Enter in the ID of the student you wish to edit.");
+                        dbc.printStudentIDs(db);
+                        System.out.println("\nEnter in the ID of the student you wish to edit.");
                         
                         id = sc1.nextInt();
                         sc1.nextLine();
@@ -1789,14 +1801,14 @@ public class CECS343Team4 {
                             dbc.getStudent(db, id).setStudentName(sc1.nextLine());
                         }
                         
-                        
+                        /*
                         System.out.println("Would you like to change the student ID? y or n");
                       
                         if(sc1.nextLine().compareToIgnoreCase("y")==0){
                             System.out.println("Change the student ID");
                             dbc.getStudent(db, id).setStudentID(sc1.nextInt());
                         }
-                        
+                        */
                         System.out.println("Did the student pay? y or n");
                       
                         if(sc1.nextLine().compareToIgnoreCase("y")==0){
@@ -1813,6 +1825,7 @@ public class CECS343Team4 {
                         sc1.nextLine();
                         
                         /**********list id of all employees *************/
+                        dbc.printEmployeeIDs(db);
                         System.out.println();
                         System.out.println("Enter in the ID of the employee you wish to edit");
                         id = sc1.nextInt();

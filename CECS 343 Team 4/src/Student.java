@@ -100,13 +100,23 @@ public class Student {
     }
     
     public void studentProfile() {
-        System.out.println(studentName + " ID:" + studentID);
-        System.out.print("Register courses:");
-        int size = sessions.size();
-        for (int i = 0; i < size; i++) {
-            System.out.print(sessions.get(i).getCourse().getCourseName() + " | ");
+        System.out.println("Name: " + studentName + " ID:" + studentID);
+        System.out.println("Major: " + major);
+        System.out.println("Register courses:");
+        
+        if(!sessions.isEmpty())
+        {
+            int size = sessions.size();
+            for (int i = 0; i < size; i++) {
+                System.out.print(sessions.get(i).getCourse().getCourseName() + " | ");
+            }
+        }
+        else
+        {
+            System.out.println("None");
         }
         System.out.println();
+        
     }
     
     public boolean isEmpty()
