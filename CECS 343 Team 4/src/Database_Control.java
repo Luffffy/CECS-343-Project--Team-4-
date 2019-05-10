@@ -128,6 +128,7 @@ public class Database_Control {
     {
         if(db.getBuildings().containsKey(building))
         {
+            
             System.out.println("Room " + room.getRoomName() + " has been added to " + building);
             db.getBuilding(building).getRoomList().add(room);
         }

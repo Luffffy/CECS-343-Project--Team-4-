@@ -293,7 +293,7 @@ public class Database {
         Session tempssp6 = new Session("05", 0, 6, true, tempb, tempr, tempst, tempet, preReq2);
         dbc.addSession(this, "CollegeName", "DepartmentName", "MajorName", "Prereq2", tempssp6);
         sc.addSession(this, 3, tempssp6);
-        System.out.println();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         
         
         
